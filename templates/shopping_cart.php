@@ -1,53 +1,99 @@
 
+<!-- HTML by Andrew Moots & Miroslav Pavlovski w/ outline from Prithviraj Narahari & Alexander Martens & Bootstrap -->
 <!DOCTYPE HTML>
-<head>
-	<title>Shopping Cart</title>
-	<script>
-	//remove from cart
-	function del(isbn){
-		window.location.href="shopping_cart?delIsbn="+ isbn;
-	}
-	</script>
-</head>
-<body>
-	<table align="center" style="border:2px solid blue;">
-		<tr>
-			<td align="center">
-				<form id="checkout" action="confirm_order" method="get">
-					<input type="submit" name="checkout_submit" id="checkout_submit" value="Proceed to Checkout">
-				</form>
-			</td>
-			<td align="center">
-				<form id="new_search" action="screen2" method="post">
-					<input type="submit" name="search" id="search" value="New Search">
-				</form>								
-			</td>
-			<td align="center">
-				<form id="exit" action="index" method="post">
-					<input type="submit" name="exit" id="exit" value="EXIT 3-B.com">
-				</form>					
-			</td>
-		</tr>
-		<tr>
-				<form id="recalculate" name="recalculate" action="" method="post">
-			<td  colspan="3">
-				<div id="bookdetails" style="overflow:scroll;height:180px;width:400px;border:1px solid black;">
-					<table align="center" BORDER="2" CELLPADDING="2" CELLSPACING="2" WIDTH="100%">
-						<th width='10%'>Remove</th><th width='60%'>Book Description</th><th width='10%'>Qty</th><th width='10%'>Price</th>
-						<tr><td><button name='delete' id='delete' onClick='del("123441");return false;'>Delete Item</button></td><td>iuhdf</br><b>By</b> Avi Silberschatz</br><b>Publisher:</b> McGraw-Hill</td><td><input id='txt123441' name='txt123441' value='1' size='1' /></td><td>12.99</td></tr>					</table>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/css/custom.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Shopping Cart</title>
+	</head>
+	<body class="d-flex flex-column min-vh-100">
+        
+		{% include './view/header.php' %}
+
+		<div class="container-fluid">
+			<div class="standard-container bg-white shadow">
+					<h1 class="h3 mb-3 fw-normal">Shopping Cart</h1>
+					<div class="row">
+						<div class="col-md-3">
+							<a class="btn btn-md btn-warning" href="index">Exit 3-B.com</a>
+						</div>
+						<div class="col-md-3">
+							<a class="btn btn-md btn-secondary" href="screen2">New Search</a>
+						</div>
+						<div class="col-md-6 text-end">
+							<a class="btn btn-md btn-primary" href="confirm_order">Proceed to Checkout</a>
+						</div>
+					</div>
+					<div class="cart-container">
+						<div class="row head">
+							<div class="col-md-2">
+								Remove
+							</div>
+							<div class="col-md-7">
+								Book Description
+							</div>
+							<div class="col-md-1 text-center">
+								Qty
+							</div>
+							<div class="col-md-2 text-end">
+								Price
+							</div>
+						</div>
+						<div class="body">
+							<div class="row">
+								<div class="col-md-2">
+									<a class="btn btn-md btn-danger" href="#">Delete</a>
+								</div>
+								<div class="col-md-7">
+									<p>
+										SQL Server 2000 for Experienced DBA's<br/>
+										<b>By:</b> Brian Knight<br/>
+										<b>Price:</b> $34.99
+									</p>
+								</div>
+								<div class="col-md-1 text-center">
+									2
+								</div>
+								<div class="col-md-2 text-end">
+									$69.98
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2">
+									<a class="btn btn-md btn-danger" href="#">Delete</a>
+								</div>
+								<div class="col-md-7">
+									<p>
+										SQL Server 2000 for Experienced DBA's<br/>
+										<b>By:</b> Brian Knight<br/>
+										<b>Price:</b> $34.99
+									</p>
+								</div>
+								<div class="col-md-1 text-center">
+									2
+								</div>
+								<div class="col-md-2 text-end">
+									$69.98
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<a class="btn btn-md btn-secondary" href="#">Recalculate Payment</a>
+						</div>
+						<div class="col-md-6 text-end">
+							<b>Subtotal:</b> $139.96
+						</div>
+					</div>
 				</div>
-			</td>
-		</tr>
-		<tr>
-			<td align="center">				
-					<input type="submit" name="recalculate_payment" id="recalculate_payment" value="Recalculate Payment">
-				</form>
-			</td>
-			<td align="center">
-				&nbsp;
-			</td>
-			<td align="center">			
-				Subtotal:  $12.99			</td>
-		</tr>
-	</table>
-</body>
+			</div>
+		</div>
+
+		{% include './view/footer.php' %}
+
+	</body>
+</html>

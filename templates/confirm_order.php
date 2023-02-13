@@ -1,79 +1,193 @@
 
+<!-- HTML by Andrew Moots & Miroslav Pavlovski w/ outline from Prithviraj Narahari & Alexander Martens & Bootstrap -->
 <!DOCTYPE HTML>
-<head>
-	<title>CONFIRM ORDER</title>
-	<header align="center">Confirm Order</header> 
-</head>
-<body>
-	<table align="center" style="border:2px solid blue;">
-	<form id="buy" action="proof_purchase" method="post">
-	<tr>
-	<td>
-	Shipping Address:
-	</td>
-	</tr>
-	<td colspan="2">
-		test test	</td>
-	<td rowspan="3" colspan="2">
-		<input type="radio" name="cardgroup" value="profile_card" checked>Use Credit card on file<br />MASTER - 1234567812345678 - 12/2015<br />
-		<input type="radio" name="cardgroup" value="new_card">New Credit Card<br />
-				<select id="credit_card" name="credit_card">
-					<option selected disabled>select a card type</option>
-					<option>VISA</option>
-					<option>MASTER</option>
-					<option>DISCOVER</option>
-				</select>
-				<input type="text" id="card_number" name="card_number" placeholder="Credit card number">
-				<br />Exp date<input type="text" id="card_expiration" name="card_expiration" placeholder="mm/yyyy">
-	</td>
-	<tr>
-	<td colspan="2">
-		test	</td>		
-	</tr>
-	<tr>
-	<td colspan="2">
-		test	</td>
-	</tr>
-	<tr>
-	<td colspan="2">
-		Tennessee, 12345	</td>
-	</tr>
-	<tr>
-	<td colspan="3" align="center">
-	<div id="bookdetails" style="overflow:scroll;height:180px;width:520px;border:1px solid black;">
-	<table border='1'>
-		<th>Book Description</th><th>Qty</th><th>Price</th>
-		<tr><td>iuhdf</br><b>By</b> Avi Silberschatz</br><b>Publisher:</b> McGraw-Hill</td><td>1</td><td>$12.99</td></tr>	</table>
-	</div>
-	</td>
-	</tr>
-	<tr>
-	<td align="left" colspan="2">
-	<div id="bookdetails" style="overflow:scroll;height:180px;width:260px;border:1px solid black;background-color:LightBlue">
-	<b>Shipping Note:</b> The book will be </br>delivered within 5</br>business days.
-	</div>
-	</td>
-	<td align="right">
-	<div id="bookdetails" style="overflow:scroll;height:180px;width:260px;border:1px solid black;">
-		SubTotal:$12.99</br>Shipping_Handling:$2</br>_______</br>Total:$14.99	</div>
-	</td>
-	</tr>
-	<tr>
-		<td align="right">
-			<input type="submit" id="buyit" name="btnbuyit" value="BUY IT!">
-		</td>
-		</form>
-		<td align="right">
-			<form id="update" action="update_customerprofie" method="post">
-			<input type="submit" id="update_customerprofile" name="update_customerprofile" value="Update Customer Profile">
-			</form>
-		</td>
-		<td align="left">
-			<form id="cancel" action="index" method="post">
-			<input type="submit" id="cancel" name="cancel" value="Cancel">
-			</form>
-		</td>
-	</tr>
-	</table>
-</body>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">	
+		<link rel="stylesheet" href="/static/css/custom.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>CONFIRM ORDER</title>
+	</head>
+	<body class="d-flex flex-column min-vh-100">
+        
+		{% include './view/header.php' %}
+
+		<div class=container-fluid>
+			<div class="standard-container bg-white shadow">
+				<h1 class="h3 mb-3 fw-normal">Confirm Order</h1>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="row">
+							<div class="col-md-12">
+								"Customer Name"
+							</div>
+							<div class="col-md-12">
+								"Street Address"
+							</div>
+							<div class="col-md-12">
+								"City"
+							</div>
+							<div class="col-md-6">
+								"State"
+							</div>
+							<div class="col-md-6">
+								"Zip"
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="row">
+							<div class="col-md-12">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+								<label class="form-check-label" for="flexRadioDefault1">
+									Use Credit Card on file
+								</label>
+							</div>
+							<div class="col-md-12">
+								"Visa 1234-5678-9012-3456"
+							</div>
+							<div class="col-md-12">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+								<label class="form-check-label" for="flexRadioDefault2">
+									New Credit Card
+								</label>
+							</div>
+							<div class="col-md-5">
+								<select id="inputCardType" class="form-select">
+									<option selected disabled>Choose...</option>
+									<option value="D">Discover</option>
+									<option value="M">MasterCard</option>
+									<option value="V">Visa</option>
+								</select>
+							</div>
+							<div class="col-md-7">
+								<input required type="number" class="form-control" id="inputCardNum" placeholder="Enter credit card number">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cart-container">
+					<div class="row head">
+						<div class="col-md-9">
+							Book Description
+						</div>
+						<div class="col-md-1 text-center">
+							Qty
+						</div>
+						<div class="col-md-2 text-end">
+							Price
+						</div>
+					</div>
+					<div class="body">
+						<div class="row">
+							<div class="col-md-9">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Price:</b> $34.99
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								2
+							</div>
+							<div class="col-md-2 text-end">
+								$69.98
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Price:</b> $34.99
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								2
+							</div>
+							<div class="col-md-2 text-end">
+								$69.98
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Price:</b> $34.99
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								2
+							</div>
+							<div class="col-md-2 text-end">
+								$69.98
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Price:</b> $34.99
+								</p>
+							</div>
+							<div class="col-md-1 text-center">
+								2
+							</div>
+							<div class="col-md-2 text-end">
+								$69.98
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<p class="shipping-note"><b>SHIPPING NOTE:</b> The books will be delivered within 5 business days.</p>
+					</div>
+					<div class="col-md-7">
+						<div class="row">
+							<div class="col-md-7 text-end">
+								<b>Subtotal:</b>
+							</div>
+							<div class="col-md-5">
+								$279.92
+							</div>
+							<div class="col-md-7 text-end">
+								<b>Shipping & Handling:</b>
+							</div>
+							<div class="col-md-5">
+								$16.00
+							</div>
+							<div class="col-md-12">
+								<hr>
+							</div>
+							<div class="col-md-7 text-end">
+								<b>Total:</b>
+							</div>
+							<div class="col-md-5">
+								$295.92
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-3">
+						<a class="btn btn-md btn-warning" href="index">Cancel</a>
+					</div>
+					<div class="col-md-6 text-center">
+						<a class="btn btn-md btn-secondary" href="update_customerprofile">Update Customer Profile</a>
+					</div>
+					<div class="col-md-3 text-end">
+						<button type="submit" class="btn btn-md btn-primary" href="#">Place Order</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include './view/footer.php' %}
+
+	</body>
 </HTML>

@@ -1,62 +1,97 @@
 
-<!-- Figure 3: Search Result Screen by Prithviraj Narahari, php coding: Alexander Martens -->
+<!-- HTML by Andrew Moots & Miroslav Pavlovski w/ outline from Prithviraj Narahari & Alexander Martens & Bootstrap -->
 <html>
-<head>
-	<title> Search Result - 3-B.com </title>
-	<script>
-	//redirect to reviews page
-	function review(isbn, title){
-		window.location.href="screen4?isbn="+ isbn + "&title=" + title;
-	}
-	//add to cart
-	function cart(isbn, searchfor, searchon, category){
-		window.location.href="screen3?cartisbn="+ isbn + "&searchfor=" + searchfor + "&searchon=" + searchon + "&category=" + category;
-	}
-	</script>
-</head>
-<body>
-	<table align="center" style="border:1px solid blue;">
-		<tr>
-			<td align="left">
-				
-					<h6> <fieldset>Your Shopping Cart has 0 items</fieldset> </h6>
-				
-			</td>
-			<td>
-				&nbsp
-			</td>
-			<td align="right">
-				<form action="shopping_cart" method="post">
-					<input type="submit" value="Manage Shopping Cart">
-				</form>
-			</td>
-		</tr>	
-		<tr>
-		<td style="width: 350px" colspan="3" align="center">
-			<div id="bookdetails" style="overflow:scroll;height:180px;width:400px;border:1px solid black;background-color:LightBlue">
-			<table>
-			<tr><td align='left'><button name='btnCart' id='btnCart' onClick='cart("123441", "", "Array", "all")'>Add to Cart</button></td><td rowspan='2' align='left'>iuhdf</br>By Avi Silberschatz</br><b>Publisher:</b> McGraw-Hill,</br><b>ISBN:</b> 123441</t> <b>Price:</b> 12.99</td></tr><tr><td align='left'><button name='review' id='review' onClick='review("123441", "iuhdf")'>Reviews</button></td></tr><tr><td colspan='2'><p>_______________________________________________</p></td></tr><tr><td align='left'><button name='btnCart' id='btnCart' onClick='cart("978-0316055437", "", "Array", "all")'>Add to Cart</button></td><td rowspan='2' align='left'>title</br>By fname lname</br><b>Publisher:</b> pub,</br><b>ISBN:</b> 978-0316055437</t> <b>Price:</b> 12.99</td></tr><tr><td align='left'><button name='review' id='review' onClick='review("978-0316055437", "title")'>Reviews</button></td></tr><tr><td colspan='2'><p>_______________________________________________</p></td></tr><tr><td align='left'><button name='btnCart' id='btnCart' onClick='cart("978-0345339706", "", "Array", "all")'>Add to Cart</button></td><td rowspan='2' align='left'>Lord of the Rings, The Fellowship of the</br>By J.R.R. Tolkien</br><b>Publisher:</b> Del Rey,</br><b>ISBN:</b> 978-0345339706</t> <b>Price:</b> 8.09</td></tr><tr><td align='left'><button name='review' id='review' onClick='review("978-0345339706", "Lord of the Rings, The Fellowship of the")'>Reviews</button></td></tr><tr><td colspan='2'><p>_______________________________________________</p></td></tr><tr><td align='left'><button name='btnCart' id='btnCart' onClick='cart("978-0590353427", "", "Array", "all")'>Add to Cart</button></td><td rowspan='2' align='left'>Harry Potter and the Sorcerer Stone</br>By J.K. Rowling</br><b>Publisher:</b> Scholastic,</br><b>ISBN:</b> 978-0590353427</t> <b>Price:</b> 8.47</td></tr><tr><td align='left'><button name='review' id='review' onClick='review("978-0590353427", "Harry Potter and the Sorcerer Stone")'>Reviews</button></td></tr><tr><td colspan='2'><p>_______________________________________________</p></td></tr>			</table>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/css/custom.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title> Search Result - 3-B.com </title>
+	</head>
+	<body class="d-flex flex-column min-vh-100">
+        
+		{% include './view/header.php' %}
+
+        <div class="container-fluid">
+			<div class="standard-container bg-white shadow">
+				<h1 class="h3 mb-3 fw-normal">Search Results</h1>
+				<div class="row">
+					<div class="col-md-6">
+						Your shopping cart has 0 items
+					</div>
+					<div class="col-md-6 text-end">
+						<a class="btn btn-md btn-primary" href="confirm_order">Manage Shopping Cart</a>
+					</div>
+				</div>
+				<div class="cart-container">
+					<div class="row head">
+						<div class="col-md-3 text-center">
+							Controls
+						</div>
+						<div class="col-md-7">
+							Book Description
+						</div>
+						<div class="col-md-2 text-end">
+							Price
+						</div>
+					</div>
+					<div class="body">
+						<div class="row">
+							<div class="col-md-3 text-center">
+								<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
+								<br/>
+								<br/>
+								<a class="btn btn-sm btn-secondary" href="screen4">Reviews</a>
+							</div>
+							<div class="col-md-7">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Publisher:</b> McGraw-Hill<br/>
+									<b>ISBN:</b> 1234567890<br/>
+								</p>
+							</div>
+							<div class="col-md-2 text-end">
+								$34.99
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 text-center">
+								<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
+								<br/>
+								<br/>
+								<a class="btn btn-sm btn-secondary" href="screen4">Reviews</a>
+							</div>
+							<div class="col-md-7">
+								<p>
+									SQL Server 2000 for Experienced DBA's<br/>
+									<b>By:</b> Brian Knight<br/>
+									<b>Publisher:</b> McGraw-Hill<br/>
+									<b>ISBN:</b> 1234567890<br/>
+								</p>
+							</div>
+							<div class="col-md-2 text-end">
+								$34.99
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<a class="btn btn-md btn-warning" href="index">Exit 3-B.com</a>
+					</div>
+					<div class="col-md-4">
+						<a class="btn btn-md btn-secondary" href="screen2">New Search</a>
+					</div>
+					<div class="col-md-5 text-end">
+						<a type="submit" class="btn btn-md btn-primary" href="confirm_order">Proceed to Checkout</a>
+					</div>
+				</div>
 			</div>
-			
-			</td>
-		</tr>
-		<tr>
-			<td align= "center">
-				<form action="confirm_order" method="get">
-					<input type="submit" value="Proceed To Checkout" id="checkout" name="checkout">
-				</form>
-			</td>
-			<td align="center">
-				<form action="screen2" method="post">
-					<input type="submit" value="New Search">
-				</form>
-			</td>
-			<td align="center">
-				<form action="index" method="post">
-					<input type="submit" name="exit" value="EXIT 3-B.com">
-				</form>
-			</td>
-		</tr>
-	</table>
-</body>
+		</div>
+
+		{% include './view/footer.php' %}
+
+	</body>
 </html>

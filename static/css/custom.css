@@ -1,0 +1,111 @@
+:root {
+    --bootstrap-blue: #0d6efd;
+    --gray: #ced4da;
+    --light-gray: #efefef;
+}
+
+body {
+    background-color: var(--light-gray);
+}
+
+.navigation-container {
+    background-color: white;
+    padding: 0px 50px 10px 50px;
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--gray);
+}
+
+.login-container input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.login-container input[type="password"] {
+    margin-top: -1px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.standard-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--gray);
+}
+
+.cart-container {
+    width: 100%;
+    border-radius: 6px;
+    border: solid var(--bootstrap-blue);
+    border-width: 0px 2px 2px 2px;
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+.cart-container .head {
+    background: var(--gray);
+    border: 2px solid var(--bootstrap-blue);
+    border-radius: 6px 6px 0px 0px;
+    padding: 10px;
+}
+
+.cart-container .body {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.cart-container .body .row {
+    padding: 10px;
+    border-bottom: 2px solid var(--bootstrap-blue);
+}
+
+.cart-container .body .row:last-child {
+    border: 0px;
+}
+
+.shipping-note {
+    background-color: var(--gray);
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.reviews-container {
+    width: 100%;
+    border-radius: 6px;
+    border: solid var(--bootstrap-blue);
+    margin: 10px 0px;
+    padding: 0px 10px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.reviews-container .row {
+    padding: 10px;
+    border-bottom: 2px solid var(--bootstrap-blue);
+}
+
+.reviews-container .row:last-child {
+    border: 0px;
+}
+
+/* Disable number input arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

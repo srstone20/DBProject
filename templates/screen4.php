@@ -1,45 +1,87 @@
 
-<!-- screen 4: Book Reviews by Prithviraj Narahari, php coding: Alexander Martens-->
+<!-- HTML by Andrew Moots & Miroslav Pavlovski w/ outline from Prithviraj Narahari & Alexander Martens & Bootstrap -->
 <!DOCTYPE html>
 <html>
-<head>
-<title>Book Reviews - 3-B.com</title>
-<style>
-.field_set
-{
-	border-style: inset;
-	border-width:4px;
-}
-</style>
-</head>
-<body>
-	<table align="center" style="border:1px solid blue;">
-		<tr>
-			<td align="center">
-				<h5> Reviews For:</h5>
-			</td>
-			<td align="left">
-				<h5> </h5>
-			</td>
-		</tr>
-			
-		<tr>
-			<td colspan="2">
-			<div id="bookdetails" style="overflow:scroll;height:200px;width:300px;border:1px solid black;">
-			<table>
-						</table>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/css/custom.css">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>BOOK REVIEWS - 3-B.com</title>
+	</head>
+	<body class="d-flex flex-column min-vh-100">
+        
+		{% include './view/header.php' %}
+
+        <div class="container-fluid">
+			<div class="standard-container bg-white shadow">
+				<h1 class="h3 mb-3 fw-normal">Reviews</h1>
+				<p><b>Reviews for:</b> SQL Server 2000 for Experienced DBA's</p>
+				<div class="reviews-container">
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Made me cry and my dog leave me.
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							Blah blah
+						</div>
+					</div>
+				</div>
+				<div class="text-center">
+					<a class="btn btn-md btn-primary" href="screen3">Done</a>
+				</div>
 			</div>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center">
-				<form action="screen2" method="post">
-					<input type="submit" value="Done">
-				</form>
-			</td>
-		</tr>
-	</table>
+		</div>
 
-</body>
+		{% include './view/footer.php' %}
 
+	</body>
 </html>

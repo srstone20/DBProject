@@ -1,0 +1,21 @@
+A virtual environment (venv) is an independent python machine + python 
+library that is separate from the "main" python on your computer and other
+venvs which allows for projects to be separate from eachother.
+
+To activate the venv, launch the .bat file with "venv/Scripts/Activate" (win).
+
+To deactivate, type the command "deactivate".
+
+To install Flask, type "pip install Flask" in the venv.
+
+To run the server instance locally, type "flask --app [filename] run".
+You can now go to localhost:5000 in a browser to connect. This is
+a bulletin server, so maybe not the best for final project. 
+
+To run the server instance on your network: "flask --app [filename] run -- host=0.0.0.0"
+To visit it from another computer on the network, go to localhost:5000.
+It will tell you the IP address, and you can navigate there from other connected
+devices! 
+
+Debug mode automatically refreshes the server when code is changed.
+To run in debug mode: "flask --app [filename] --debug run"
