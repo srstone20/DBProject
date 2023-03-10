@@ -17,58 +17,8 @@
         <div class="container-fluid">
 			<div class="standard-container bg-white shadow">
 				<h1 class="h3 mb-3 fw-normal">Reviews</h1>
-				<p><b>Reviews for:</b> SQL Server 2000 for Experienced DBA's</p>
-				<div class="reviews-container">
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Made me cry and my dog leave me.
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							Blah blah
-						</div>
-					</div>
+				<p><b>Reviews for:</b> {{ISBN}} </p>
+				<div id="reviews-container"class="reviews-container">
 					<div class="row">
 						<div class="col">
 							Blah blah
@@ -80,6 +30,14 @@
 				</div>
 			</div>
 		</div>
+
+		{% for review in reviewList %}
+			<div class="row">
+				<div class="col">
+					{{review}}
+				</div>
+			</div>
+		{% endfor %}
 
 		{% include './view/footer.php' %}
 

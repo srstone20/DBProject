@@ -56,25 +56,6 @@
 								$34.99
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-3 text-center">
-								<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
-								<br/>
-								<br/>
-								<a class="btn btn-sm btn-secondary" href="screen4">Reviews</a>
-							</div>
-							<div class="col-md-7">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Publisher:</b> McGraw-Hill<br/>
-									<b>ISBN:</b> 1234567890<br/>
-								</p>
-							</div>
-							<div class="col-md-2 text-end">
-								$34.99
-							</div>
-						</div>
 					</div>
 				</div>
 				<div class="row">
