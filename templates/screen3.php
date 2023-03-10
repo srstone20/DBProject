@@ -21,7 +21,7 @@
 						Your shopping cart has 0 items
 					</div>
 					<div class="col-md-6 text-end">
-						<a class="btn btn-md btn-primary" href="shopping_cart">Manage Shopping Cart</a>
+						<a class="btn btn-md btn-primary" href="confirm_order">Manage Shopping Cart</a>
 					</div>
 				</div>
 				<div class="cart-container">
