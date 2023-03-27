@@ -37,44 +37,33 @@
 						</div>
 					</div>
 					<div class="body">
-						<div class="row">
-							<div class="col-md-3 text-center">
-								<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
-								<br/>
-								<br/>
-								<a class="btn btn-sm btn-secondary" href="screen4">Reviews</a>
+						{% for book in books %}
+							<div class="row">
+								<div class="col-md-3 text-center">
+									<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
+									<br/>
+									<br/>
+									<button id="reviews-button" class="btn btn-sm btn-secondary">Reviews</button>
+									<script>
+										var but = document.getElementById("reviews-button");
+										but.onclick = function() {
+											open("/screen4/" + but.closest(".row").querySelector(".ISBN").innerHTML, "_self");
+										}
+									</script>
+								</div>
+								<div class="col-md-7">
+									<p>
+										{{ book[0] }}<br/>
+										<b>{{ book[1] }}<br/>
+										<b>Publisher:</b>{{ book[2] }}<br/>
+										<b>ISBN:</b> <span class="ISBN">{{ book[3] }}</span> <br/>
+									</p>
+								</div>
+								<div class="col-md-2 text-end">
+									{{ book[4] }}
+								</div>
 							</div>
-							<div class="col-md-7">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Publisher:</b> McGraw-Hill<br/>
-									<b>ISBN:</b> 1234567890<br/>
-								</p>
-							</div>
-							<div class="col-md-2 text-end">
-								$34.99
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-3 text-center">
-								<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
-								<br/>
-								<br/>
-								<a class="btn btn-sm btn-secondary" href="screen4">Reviews</a>
-							</div>
-							<div class="col-md-7">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Publisher:</b> McGraw-Hill<br/>
-									<b>ISBN:</b> 1234567890<br/>
-								</p>
-							</div>
-							<div class="col-md-2 text-end">
-								$34.99
-							</div>
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 				<div class="row">

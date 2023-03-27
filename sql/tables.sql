@@ -7,6 +7,7 @@ CREATE TABLE books (
     genre VARCHAR(255),
     description VARCHAR(255),
     num_of_copies INT,
+    price FLOAT,
     PRIMARY KEY (ISBN)
 );
 

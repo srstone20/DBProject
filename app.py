@@ -1,5 +1,9 @@
 from flask import Flask, url_for
 from flask import render_template
+import sqlite3 as sql
+
+# con = sql.connect("bbb.db")
+# cursor = con.cursor()
 
 app = Flask(__name__)
 
@@ -27,13 +31,25 @@ def user_login():
 def admin_login():
     return render_template("admin_login.php")
 
-@app.route("/screen3")
-def screen3():
-    return render_template("screen3.php")
+@app.route("/screen3/<string:keywords>")
+def screen3(keywords):
+    # keywords = sanitize(keywords) # prevent SQL injections?
 
-@app.route("/screen4")
-def screen4():
-    return render_template("screen4.php")
+    con = sql.connect("sql/bbb.db")
+    cursor = con.cursor()
+
+    books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM BOOKS WHERE title = ?", (keywords,))
+    return render_template("screen3.php", books=books.fetchall())
+
+@app.route("/screen4/<string:ISBN>")
+def screen4(ISBN):
+    con = sql.connect("sql/bbb.db")
+    cursor = con.cursor()
+
+    reviewList = cursor.execute("SELECT review FROM Reviews WHERE ISBN = ?", (ISBN,)).fetchall()
+    title = cursor.execute("SELECT title FROM Books WHERE ISBN = ?", (ISBN,)).fetchone()[0]
+
+    return render_template("screen4.php", title = title, reviewList = reviewList)
 
 @app.route("/shopping_cart")
 def shopping_cart():

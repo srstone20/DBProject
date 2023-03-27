@@ -23,10 +23,20 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<input type="text" class="form-control" id="inputSearch" placeholder="Title, Author, etc...">
+						<input id="search-bar" type="text" class="form-control" id="inputSearch" placeholder="Title, Author, etc...">
 					</div>
 					<div class="col-md-3 text-end">
-						<a class="btn btn-md btn-primary" href="screen3">Search</a>
+						<button id="search-button" class="btn btn-md btn-primary">Search</button>
+						<script>
+							var but = document.getElementById("search-button");
+							but.onclick = function() {
+								var keywords = parseSearch();
+								open("/screen3/" + keywords, "_self");
+							}
+							function parseSearch() {
+								return document.getElementById("search-bar").value;
+							}
+						</script>
 					</div>
 				</div>
 				<br/>
