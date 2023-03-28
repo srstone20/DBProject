@@ -23,47 +23,73 @@
 
 CREATE TABLE books (
     ISBN VARCHAR(255) NOT NULL PRIMARY KEY,
-    Author VARCHAR(255) NOT NULL,
-    Title VARCHAR(255) NOT NULL,
-    Publisher VARCHAR(255) NOT NULL,
-    Date_published DATE NOT NULL,
-    Genre VARCHAR(255) NOT NULL,
-    Price FLOAT NOT NULL,
-    Description VARCHAR(255) NOT NULL,
-    Num_of_copies INTEGER NOT NULL
-)
+    author VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    publisher VARCHAR(255) NOT NULL,
+    date_published DATE NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    price FLOAT NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    num_of_copies INTEGER NOT NULL
+);
 
 CREATE TABLE reviews (
 
-)
+);
 
 CREATE TABLE user (
-    Username VARCHAR(255) NOT NULL,
-    Password VARCHAR(255) NOT NULL,
-    Fname VARCHAR(255) NOT NULL,
-    Lname VARCHAR(255) NOT NULL,
-    Address VARCHAR(255) NOT NULL,
-    City VARCHAR(255) NOT NULL,
-    State CHAR(2) NOT NULL,
-    PRIMARY KEY (Username, Password)
-)
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    PIN VARCHAR(255) NOT NULL,
+    fname VARCHAR(255) NOT NULL,
+    lname VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state CHAR(2) NOT NULL,
+    zip INTEGER NOT NULL,
+    cardNo VARCHAR(16) NOT NULL,
+
+    FOREIGN KEY (cardNo) REFERENCES credit(cardNo)
+    FOREIGN KEY 
+);
 
 CREATE TABLE purchase (
-    Purchase_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    Date_purchased DATE NOT NULL,
-    Subtotal FLOAT NOT NULL,
-    Tax FLOAT NOT NULL,
-    Shipping_cost FLOAT NOT NULL,
-    Total FLOAT NOT NULL
-)
+    purchase_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    date_purchased DATE NOT NULL,
+    subtotal FLOAT NOT NULL,
+    tax FLOAT NOT NULL,
+    shipping_cost FLOAT NOT NULL,
+    total FLOAT NOT NULL
+    ISBN VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    FOREIGN KEY (ISBN) REFERENCES books(ISBN),
+    FOREIGN KEY (username) REFERENCES user(username),
+);
 
 CREATE TABLE credit (
-    CardNo INTEGER NOT NULL PRIMARY KEY,
-    SecCode INTEGER NOT NULL,
-    ExpDate DATE NOT NULL,
-    Name VARCHAR(255) NOT NULL
-)
+    cardNo VARCHAR(16) NOT NULL PRIMARY KEY,
+    secCode INTEGER NOT NULL,
+    expDate DATE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    PIN VARCHAR(255) NOT NULL,
+    FOREIGN KEY (username) REFERENCES user(username),
+    FOREIGN KEY (PIN) REFERENCES user(PIN)
+);
 
 CREATE TABLE cart (
+    quantity INTEGER NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    ISBN INTEGER NOT NULL,
+    PRIMARY KEY (username, ISBN)
+    FOREIGN KEY (ISBN) REFERENCES book(ISBN),
+    FOREIGN KEY (username) REFERENCES user(username)
+);
 
-)
+CREATE TABLE past_orders (
+    quantity INTEGER NOT NULL,
+    purchase_id INTEGER NOT NULL,
+    ISBN INTEGER NOT NULL,
+    PRIMARY KEY (purchase_id, ISBN)
+    FOREIGN KEY (ISBN) REFERENCES book(ISBN),
+    FOREIGN KEY (purchase_id) REFERENCES purchase(purchase_id)
+);
