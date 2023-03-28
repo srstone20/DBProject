@@ -31,24 +31,27 @@ def user_login():
 def admin_login():
     return render_template("admin_login.php")
 
-@app.route("/results/<string:keywords>")
-def results(keywords):
+@app.route("/results/<string:keyword>")
+def results(keyword, methods=["POST"]):
     # keywords = sanitize(keywords) # prevent SQL injections?
 
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
-    attr = request.form["value"]
+    eqi = keyword.find("=")
+    attr = keyword[:eqi]
+    value = keyword[eqi+1:]
 
     if attr == "title":
-        books = cursor.execute("SELECT * FROM book WHERE title = ?", (keywords,))
+        books = cursor.execute("SELECT * FROM book WHERE title = ?", (value,))
     elif attr == "author":
-        books = cursor.execute("SELECT * FROM book WHERE author = ?", (keywords,))
+        books = cursor.execute("SELECT * FROM book WHERE author = ?", (value,))
     elif attr == "publisher":
-        books = cursor.execute("SELECT * FROM book WHERE publisher = ?", (keywords,))
+        books = cursor.execute("SELECT * FROM book WHERE publisher = ?", (value,))
     elif attr == "isbn":
-        books = cursor.execute("SELECT * FROM book WHERE ISBN = ?", (keywords,))
+        books = cursor.execute("SELECT * FROM book WHERE ISBN = ?", (value,))
     else:
         books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM book WHERE title = ?", (keywords,))
+    
     return render_template("results.php", books=books.fetchall())
 
 @app.route("/reviews/<string:ISBN>", methods=["POST"])

@@ -30,8 +30,9 @@
 						<script>
 							var but = document.getElementById("search-button");
 							but.onclick = function() {
-								var keywords = parseSearch();
-								open("/results/" + keywords, "_self");
+								var keyword = parseSearch();
+								var attribute = "title";
+								open("/results/" + attribute + "=" + keyword, "_self");
 							}
 							function parseSearch() {
 								return document.getElementById("search-bar").value;

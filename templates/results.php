@@ -32,9 +32,9 @@
 						<div class="col-md-7">
 							Book Description
 						</div>
-						<div class="col-md-2 text-end">
+						<!-- <div class="col-md-2 text-end">
 							Price
-						</div>
+						</div> -->
 					</div>
 					<div class="body">
 						{% for book in books %}
@@ -51,16 +51,17 @@
 										}
 									</script>
 								</div>
-								<div class="col-md-7">
+								<img src="{{ book[8] }}" alt="Where is it?" style="width:100px;height:100px;">
+								<div class="col-md-7" style="width:40%;">
 									<p>
-										{{ book[0] }}<br/>
-										<b>{{ book[1] }}<br/>
-										<b>Publisher:</b>{{ book[2] }}<br/>
-										<b>ISBN:</b> <span class="ISBN">{{ book[3] }}</span> <br/>
+										<b>{{ book[1] }}</b><br/>
+										By <b>{{ book[2] }}</b><br/>
+										Publisher: {{ book[3] }}<br/>
+										ISBN: <span class="ISBN">{{ book[0] }}</span> <br/>
 									</p>
 								</div>
-								<div class="col-md-2 text-end">
-									{{ book[4] }}
+								<div class="col-md-2 text-center">
+									<b>${{ book[6] / 100 }}</b>
 								</div>
 							</div>
 						{% endfor %}

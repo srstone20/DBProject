@@ -1,41 +1,29 @@
--- CREATE TABLE books (
---     title VARCHAR(255),
---     author VARCHAR(255),
---     publisher VARCHAR(255),
---     ISBN VARCHAR(255),
---     date_published Date,
---     genre VARCHAR(255),
---     description VARCHAR(255),
---     num_of_copies INT,
---     price FLOAT,
---     PRIMARY KEY (ISBN)
--- );
-
--- CREATE TABLE reviews (
---     review VARCHAR(255),
---     review_id INTEGER PRIMARY KEY AUTOINCREMENT,
---     ISBN VARCHAR(255),
---     username VARCHAR(255),
---     FOREIGN KEY (ISBN) REFERENCES books (ISBN)
---         ON DELETE CASCADE
--- );
-
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS purchase;
+DROP TABLE IF EXISTS credit;
+DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS past_cart;
 
 CREATE TABLE book (
     ISBN VARCHAR(13) NOT NULL PRIMARY KEY,
-    author VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
     publisher VARCHAR(255) NOT NULL,
     date_published DATE NOT NULL,
     genre VARCHAR(255) NOT NULL,
     price INTEGER NOT NULL,
-    description VARCHAR(255),
-    num_of_copies INTEGER NOT NULL
+    num_of_copies INTEGER NOT NULL,
+    img_link VARCHAR(255),
+    description VARCHAR(255)
 );
 
 CREATE TABLE review (
     username VARCHAR(255),
     ISBN VARCHAR(13),
+    review VARCHAR(1023),
+    PRIMARY KEY (username, ISBN)
     FOREIGN KEY (ISBN) REFERENCES book(ISBN)
     FOREIGN KEY (username) REFERENCES user(username)
 );
@@ -59,9 +47,9 @@ CREATE TABLE purchase (
     subtotal FLOAT NOT NULL,
     tax FLOAT NOT NULL,
     shipping_cost FLOAT NOT NULL,
-    total FLOAT NOT NULL
+    total FLOAT NOT NULL,
     username VARCHAR(255) NOT NULL,
-    FOREIGN KEY (username) REFERENCES user(username),
+    FOREIGN KEY (username) REFERENCES user(username)
 );
 
 CREATE TABLE credit (
@@ -69,23 +57,23 @@ CREATE TABLE credit (
     sec_code INTEGER NOT NULL,
     exp_date DATE NOT NULL,
     username VARCHAR(255) NOT NULL,
-    FOREIGN KEY (username) REFERENCES user(username),
+    FOREIGN KEY (username) REFERENCES user(username)
 );
 
 CREATE TABLE cart (
-    quantity INTEGER NOT NULL,
     username VARCHAR(255) NOT NULL,
     ISBN VARCHAR(13) NOT NULL,
+    quantity INTEGER NOT NULL,
     PRIMARY KEY (username, ISBN)
-    FOREIGN KEY (ISBN) REFERENCES book(ISBN),
+    FOREIGN KEY (ISBN) REFERENCES book(ISBN)
     FOREIGN KEY (username) REFERENCES user(username)
 );
 
 CREATE TABLE past_cart (
-    quantity INTEGER NOT NULL,
     purchase_id INTEGER NOT NULL,
     ISBN VARCHAR(13) NOT NULL,
+    quantity INTEGER NOT NULL,
     PRIMARY KEY (purchase_id, ISBN)
-    FOREIGN KEY (ISBN) REFERENCES book(ISBN),
+    FOREIGN KEY (ISBN) REFERENCES book(ISBN)
     FOREIGN KEY (purchase_id) REFERENCES purchase(purchase_id)
 );

@@ -37,11 +37,12 @@ body {
 }
 
 .standard-container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 10px;
     border-radius: 8px;
     border: 2px solid var(--gray);
+    vertical-align:center;
 }
 
 .cart-container {
@@ -57,12 +58,12 @@ body {
     background: var(--gray);
     border: 2px solid var(--bootstrap-blue);
     border-radius: 6px 6px 0px 0px;
-    padding: 10px;
+    padding: 0px;
 }
 
 .cart-container .body {
     max-height: 300px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .cart-container .body .row {
