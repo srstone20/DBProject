@@ -181,7 +181,7 @@
 						<a class="btn btn-md btn-secondary" href="#">Print</a>
 					</div>
 					<div class="col-md-4 text-end">
-						<a class="btn btn-md btn-primary" href="screen2">New Search</a>
+						<a class="btn btn-md btn-primary" href="/search">New Search</a>
 					</div>
 				</div>
 			</div>

@@ -21,7 +21,7 @@
 						Your shopping cart has 0 items
 					</div>
 					<div class="col-md-6 text-end">
-						<a class="btn btn-md btn-primary" href="confirm_order">Manage Shopping Cart</a>
+						<a class="btn btn-md btn-primary" href="/confirm_order">Manage Shopping Cart</a>
 					</div>
 				</div>
 				<div class="cart-container">
@@ -47,7 +47,7 @@
 									<script>
 										var but = document.getElementById("reviews-button");
 										but.onclick = function() {
-											open("/screen4/" + but.closest(".row").querySelector(".ISBN").innerHTML, "_self");
+											open("/reviews/" + but.closest(".row").querySelector(".ISBN").innerHTML, "_self");
 										}
 									</script>
 								</div>
@@ -68,13 +68,13 @@
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						<a class="btn btn-md btn-warning" href="index">Exit 3-B.com</a>
+						<a class="btn btn-md btn-warning" href="/index">Exit 3-B.com</a>
 					</div>
 					<div class="col-md-4">
-						<a class="btn btn-md btn-secondary" href="screen2">New Search</a>
+						<a class="btn btn-md btn-secondary" href="/search" referrerpolicy="origin">New Search</a>
 					</div>
 					<div class="col-md-5 text-end">
-						<a type="submit" class="btn btn-md btn-primary" href="confirm_order">Proceed to Checkout</a>
+						<a type="submit" class="btn btn-md btn-primary" href="/confirm_order">Proceed to Checkout</a>
 					</div>
 				</div>
 			</div>

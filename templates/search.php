@@ -31,11 +31,12 @@
 							var but = document.getElementById("search-button");
 							but.onclick = function() {
 								var keywords = parseSearch();
-								open("/screen3/" + keywords, "_self");
+								open("/results/" + keywords, "_self");
 							}
 							function parseSearch() {
 								return document.getElementById("search-bar").value;
 							}
+
 						</script>
 					</div>
 				</div>
@@ -52,11 +53,11 @@
 							<option value="title">Title</option>
 							<option value="author">Author</option>
 							<option value="publisher">Publisher</option>
-							<option value="isbn">ISBN</option>	
+							<option value="isbn">ISBN</option>
 						</select>
 					</div>
 					<div class="col-md-3 text-end">
-						<a class="btn btn-md btn-secondary" href="shopping_cart">Manage Shopping Cart</a>
+						<a class="btn btn-md btn-secondary" href="/shopping_cart">Manage Shopping Cart</a>
 					</div>
 				</div>
 				<br/>
@@ -76,7 +77,7 @@
 						</select>
 					</div>
 					<div class="col-md-3 text-end">
-						<a class="btn btn-md btn-warning" href="index">Exit 3-B.com</a>
+						<a class="btn btn-md btn-warning" href="/index">Exit 3-B.com</a>
 					</div>
 				</div>
 			</div>

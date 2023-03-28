@@ -15,9 +15,9 @@ if __name__ == "__main__":
 def home():
     return render_template("index.php")
 
-@app.route("/screen2")
-def screen2():
-    return render_template("screen2.php")
+@app.route("/search")
+def search():
+    return render_template("search.php")
 
 @app.route("/customer_registration")
 def customer_registration():
@@ -31,25 +31,35 @@ def user_login():
 def admin_login():
     return render_template("admin_login.php")
 
-@app.route("/screen3/<string:keywords>")
-def screen3(keywords):
+@app.route("/results/<string:keywords>")
+def results(keywords):
     # keywords = sanitize(keywords) # prevent SQL injections?
 
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
+    attr = request.form["value"]
 
-    books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM BOOKS WHERE title = ?", (keywords,))
-    return render_template("screen3.php", books=books.fetchall())
+    if attr == "title":
+        books = cursor.execute("SELECT * FROM book WHERE title = ?", (keywords,))
+    elif attr == "author":
+        books = cursor.execute("SELECT * FROM book WHERE author = ?", (keywords,))
+    elif attr == "publisher":
+        books = cursor.execute("SELECT * FROM book WHERE publisher = ?", (keywords,))
+    elif attr == "isbn":
+        books = cursor.execute("SELECT * FROM book WHERE ISBN = ?", (keywords,))
+    else:
+        books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM book WHERE title = ?", (keywords,))
+    return render_template("results.php", books=books.fetchall())
 
-@app.route("/screen4/<string:ISBN>")
-def screen4(ISBN):
+@app.route("/reviews/<string:ISBN>", methods=["POST"])
+def reviews(ISBN):
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
 
-    reviewList = cursor.execute("SELECT review FROM Reviews WHERE ISBN = ?", (ISBN,)).fetchall()
-    title = cursor.execute("SELECT title FROM Books WHERE ISBN = ?", (ISBN,)).fetchone()[0]
+    reviewList = cursor.execute("SELECT review FROM review WHERE ISBN = ?", (ISBN,)).fetchall()
+    title = cursor.execute("SELECT title FROM book WHERE title = ?", (ISBN,)).fetchone()[0]
 
-    return render_template("screen4.php", title = title, reviewList = reviewList)
+    return render_template("reviews.php", title = title, reviewList = reviewList)
 
 @app.route("/shopping_cart")
 def shopping_cart():

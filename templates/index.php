@@ -17,26 +17,10 @@
                 <h5>Main Menu</h5>
                 <br/>
                 <div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="group1" value="SearchCat" onclick="document.location.href='screen2'">
-                        <label class="form-check-label">Search Online</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="group1" value="customer_registration" onclick="document.location.href='customer_registration'">
-                        <label class="form-check-label">New Customer</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="group1" value="user_login" onclick="document.location.href='user_login'">
-                        <label class="form-check-label">Returning Customer</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="group1" value="admin_login" onclick="document.location.href='admin_login'">
-                        <label class="form-check-label">Administrator</label>
-                    </div>
-                    <br/>
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="button" class="btn btn-primary" type="submit" name="submit">Enter</button>
-                    </div>
+                    <a href="/search">Search Online</a>
+                    <a href="/customer_registration">Sign Up</a>
+                    <a href="/user_login">Login</a>
+                    <a href="/admin_login">Administrator</a>
                 </div>
             </div>
         </div>

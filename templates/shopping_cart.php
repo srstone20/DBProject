@@ -21,7 +21,7 @@
 							<a class="btn btn-md btn-warning" href="index">Exit 3-B.com</a>
 						</div>
 						<div class="col-md-3">
-							<a class="btn btn-md btn-secondary" href="screen2">New Search</a>
+							<a class="btn btn-md btn-secondary" href="/search">New Search</a>
 						</div>
 						<div class="col-md-6 text-end">
 							<a class="btn btn-md btn-primary" href="confirm_order">Proceed to Checkout</a>
