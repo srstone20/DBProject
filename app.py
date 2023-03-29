@@ -50,7 +50,7 @@ def results(keyword, methods=["POST"]):
     elif attr == "isbn":
         books = cursor.execute("SELECT * FROM book WHERE ISBN = ?", (value,))
     else:
-        books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM book WHERE title = ?", (keywords,))
+        books = cursor.execute("SELECT title, author, publisher, ISBN, price FROM book WHERE title = ?", (keyword,))
     
     return render_template("results.php", books=books.fetchall())
 
