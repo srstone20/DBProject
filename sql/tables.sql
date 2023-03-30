@@ -34,6 +34,7 @@ CREATE TABLE user (
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
+    address2 VARCHAR(255),
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
     zip INTEGER NOT NULL,
@@ -55,9 +56,7 @@ CREATE TABLE purchase (
 CREATE TABLE credit (
     card_no VARCHAR(16) NOT NULL PRIMARY KEY,
     sec_code INTEGER NOT NULL,
-    exp_date DATE NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    FOREIGN KEY (username) REFERENCES user(username)
+    exp_date DATE NOT NULL
 );
 
 CREATE TABLE cart (

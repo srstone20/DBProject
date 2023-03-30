@@ -10,18 +10,56 @@ app = Flask(__name__)
 if __name__ == "__main__":
     app.run(debug=True)
 
+@app.route("/test", methods=["GET", "POST"])
+def test():
+    print(request.form.get("input1"))
+    return render_template("test.html")
+
 @app.route("/")
 @app.route("/index")
 def home():
     return render_template("index.php")
 
+
 @app.route("/search")
 def search():
     return render_template("search.php")
 
-@app.route("/customer_registration")
-def customer_registration():
+@app.route("/customer_registration", methods=["GET", "POST"])
+def customer_registration():    
+    con = sql.connect("sql/bbb.db")
+    cursor = con.cursor()
+
+    if request.method == "POST":
+        form = request.form
+        insertUser = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        cursor.execute(insertUser, [
+            form['inputUsername'],
+            form['inputPIN'],
+            form['inputFirstname'],
+            form['inputLastname'],
+            form['inputAddress'],
+            form['inputAddress2'],
+            form['inputCity'],
+            form['inputState'],
+            form['inputZip'],
+            form['inputCardNum'],])
+                
+        insertCard = "INSERT INTO credit VALUES (?, ?, ?)"
+        cursor.execute(insertCard,[
+            form['inputCardNum'],
+            form['inputSecCode'],
+            form['inputExpDate'],
+        ])
+        con.commit()
+
     return render_template("customer_registration.php")
+
+# @app.route("/customer_registration", methods=["POST"])
+# def customer_registration():
+#     print(request.data)
+#     return render_template("customer_registration.php")
+
 
 @app.route("/user_login")
 def user_login():
