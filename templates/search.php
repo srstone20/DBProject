@@ -27,18 +27,6 @@
 					</div>
 					<div class="col-md-3 text-end">
 						<button id="search-button" class="btn btn-md btn-primary">Search</button>
-						<script>
-							var but = document.getElementById("search-button");
-							but.onclick = function() {
-								var keyword = parseSearch();
-								var attribute = "title";
-								open("/results/" + attribute + "=" + keyword, "_self");
-							}
-							function parseSearch() {
-								return document.getElementById("search-bar").value;
-							}
-
-						</script>
 					</div>
 				</div>
 				<br/>
@@ -49,14 +37,29 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<select class="form-select" multiple aria-label="multiple select example">
-							<option value="anywhere" selected='selected'>Keyword anywhere</option>
-							<option value="title">Title</option>
-							<option value="author">Author</option>
-							<option value="publisher">Publisher</option>
-							<option value="isbn">ISBN</option>
-						</select>
+						<form action="/results" method="POST">
+							<select id="search_select" class="form-select" multiple aria-label="multiple select example">
+								<option value="anywhere">Keyword anywhere</option>
+								<option value="title">Title</option>
+								<option value="author">Author</option>
+								<option value="publisher">Publisher</option>
+								<option value="isbn">ISBN</option>
+							</select>
+						</form>
 					</div>
+					<script>
+							var but = document.getElementById("search-button");
+							but.onclick = function() {
+								var keyword = parseSearch();
+								var search = document.getElementById("search_select");
+								var attribute = search.value;
+								open("/results/" + attribute + "=" + keyword, "_self");
+							}
+							function parseSearch() {
+								return document.getElementById("search-bar").value;
+							}
+
+					</script>
 					<div class="col-md-3 text-end">
 						<a class="btn btn-md btn-secondary" href="/shopping_cart">Manage Shopping Cart</a>
 					</div>
