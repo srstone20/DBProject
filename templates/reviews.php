@@ -28,7 +28,7 @@
 					{% endfor %}
 				</div>
 				<div class="text-center">
-					<a class="btn btn-md btn-primary" href="screen3">Done</a>
+					<a class="btn btn-md btn-primary" href="/results">Done</a>
 				</div>
 			</div>
 		</div>

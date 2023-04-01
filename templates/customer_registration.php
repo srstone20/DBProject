@@ -15,42 +15,42 @@
 		<div class="container-fluid">
 			<div class="standard-container bg-white shadow">
 				<h1 class="h3 mb-3 fw-normal">Customer Registration</h1>
-				<form class="row g-3">
+				<form class="row g-3" action="/customer_registration" method="POST">
 					<div class="col-md-6">
 						<label for="inputUsername" class="form-label">Username</label>
-						<input required type="text" class="form-control" id="inputUsername">
+						<input required type="text" class="form-control" name="inputUsername">
 					</div>
 					<div class="col-md-3">
 						<label for="inputPIN" class="form-label">PIN</label>
-						<input required type="password" class="form-control" id="inputPIN">
+						<input required type="password" class="form-control" name="inputPIN">
 					</div>
 					<div class="col-md-3">
 						<label for="inputPIN2" class="form-label">Re-Enter PIN</label>
-						<input required type="password" class="form-control" id="inputPIN2">
+						<input required type="password" class="form-control" name="inputPIN2">
 					</div>
 					<div class="col-md-6">
 						<label for="inputFirstname" class="form-label">First Name</label>
-						<input required type="text" class="form-control" id="inputFirstname">
+						<input required type="text" class="form-control" name="inputFirstname">
 					</div>
 					<div class="col-md-6">
 						<label for="inputLastname" class="form-label">Last Name</label>
-						<input required type="text" class="form-control" id="inputLastname">
+						<input required type="text" class="form-control" name="inputLastname">
 					</div>
 					<div class="col-12">
 						<label for="inputAddress" class="form-label">Address</label>
-						<input required type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+						<input required type="text" class="form-control" name="inputAddress" placeholder="1234 Main St">
 					</div>
 					<div class="col-12">
 						<label for="inputAddress2" class="form-label">Address 2</label>
-						<input required type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+						<input type="text" class="form-control" name="inputAddress2" placeholder="Apartment, studio, or floor">
 					</div>
 					<div class="col-md-6">
 						<label for="inputCity" class="form-label">City</label>
-						<input required type="text" class="form-control" id="inputCity">
+						<input required type="text" class="form-control" name="inputCity">
 					</div>
 					<div class="col-md-4">
 						<label for="inputState" class="form-label">State</label>
-						<select id="inputState" class="form-select">
+						<select name="inputState" class="form-select">
 							<option selected disabled>Choose...</option>
 							<option value="AL">Alabama</option>
 							<option value="AK">Alaska</option>
@@ -109,24 +109,19 @@
 					</div>
 					<div class="col-md-2">
 						<label for="inputZip" class="form-label">Zip</label>
-						<input type="text" class="form-control" id="inputZip">
-					</div>
-					<div class="col-md-3">
-						<label for="inputCardType" class="form-label">Card Provider</label>
-						<select id="inputCardType" class="form-select">
-							<option selected disabled>Choose...</option>
-							<option value="D">Discover</option>
-							<option value="M">MasterCard</option>
-							<option value="V">Visa</option>
-						</select>
+						<input type="text" class="form-control" name="inputZip">
 					</div>
 					<div class="col-md-6">
 						<label for="inputCardNum" class="form-label">Credit Card Number</label>
-						<input required type="number" class="form-control" id="inputCardNum">
+						<input required type="number" class="form-control" name="inputCardNum">
+					</div>
+					<div class="col-md-3">
+						<label for="inputSecCode" class="form-label">Security Code</label>
+						<input required type="number" class="form-control" name="inputSecCode">
 					</div>
 					<div class="col-md-3">
 						<label for="inputExpDate" class="form-label">Exp. Date</label>
-						<input required type="text" class="form-control" id="inputExpDate" placeholder="MM/YY">
+						<input required type="text" class="form-control" name="inputExpDate" placeholder="MM/YY">
 					</div>
 					<div class="col-6 text-end">
 						<a class="btn btn-md btn-warning" href="index">Don't Register</a>
