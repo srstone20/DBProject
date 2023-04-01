@@ -94,7 +94,7 @@ def reviews(ISBN):
     cursor = con.cursor()
 
     reviewList = cursor.execute("SELECT review FROM review WHERE ISBN = ?", (ISBN,)).fetchall()
-    title = cursor.execute("SELECT title FROM book WHERE title = ?", (ISBN,)).fetchone()[0]
+    title = cursor.execute("SELECT title FROM book WHERE ISBN = ?", (ISBN,)).fetchone()[0]
 
     return render_template("reviews.php", title = title, reviewList = reviewList)
 
