@@ -55,11 +55,6 @@ def customer_registration():
 
     return render_template("customer_registration.php")
 
-# @app.route("/customer_registration", methods=["POST"])
-# def customer_registration():
-#     print(request.data)
-#     return render_template("customer_registration.php")
-
 
 @app.route("/user_login")
 def user_login():
@@ -123,3 +118,15 @@ def update_customerprofile():
 @app.route("/admin_tasks")
 def admin_tasks():
     return render_template("admin_tasks.php")
+
+@app.route("/lstor")
+def lstor():
+    return render_template("__localStorageTest.html")
+
+@app.route("/lstor2")
+def lstor2():
+    return render_template("__localStorageTest2.html")
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("error/404.html")
