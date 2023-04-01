@@ -88,7 +88,7 @@ def results(keyword, methods=["POST"]):
     return render_template("results.php", books=books.fetchall())
 
 
-@app.route("/reviews/<string:ISBN>", methods=["POST"])
+@app.route("/reviews/<string:ISBN>", methods=["GET"])
 def reviews(ISBN):
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
