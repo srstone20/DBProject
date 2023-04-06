@@ -4,6 +4,9 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
+		<link rel="stylesheet" href="/static/css/quantityButton.css">
+		<script src="/static/js/cart.js"></script>
+		<script src="/static/js/quantityButton.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -38,12 +41,23 @@
 					</div>
 					<div class="body">
 						{% for book in books %}
-							<div class="row">
+							<div id="book-{{ book[0] }}" class="row">
 								<div class="col-md-3 text-center">
-									<a class="btn btn-sm btn-primary" href="#">Add to Cart</a>
-									<br/>
-									<br/>
-									<button id="reviews-button" class="btn btn-sm btn-secondary">Reviews</button>
+									<div class="quantity-container" style="padding:0.25em;">
+										<div class="quantity-display">
+											<input class="book-quantity" value="1"></input>
+											<div class="quantity-button-container">
+												<button class="quantity-button inc" onclick="increment({{ book[0] }})">+</button>
+												<button class="quantity-button dec" onclick="decrement({{ book[0] }})">-</button>
+											</div>
+										</div>
+									</div>
+									<div style="padding:0.25em;">
+										<button class="btn btn-sm btn-primary" onclick="addToCart({{ book[0] }})">Add to Cart</button>
+									</div>
+									<div style="padding:0.25em;">
+										<button id="reviews-button" class="btn btn-sm btn-secondary">Reviews</button>
+									</div>
 									<script>
 										var but = document.getElementById("reviews-button");
 										but.onclick = function() {
@@ -51,17 +65,17 @@
 										}
 									</script>
 								</div>
-								<img src="{{ book[8] }}" alt="Where is it?" style="width:100px;height:100px;">
-								<div class="col-md-7" style="width:40%;">
+								<img class="cover-image" src="{{ book[8] }}" alt="Where is it?" style="width:100px;height:100px;">
+								<div class="book-info col-md-7" style="width:40%;">
 									<p>
-										<b>{{ book[1] }}</b><br/>
-										By <b>{{ book[2] }}</b><br/>
-										Publisher: {{ book[3] }}<br/>
-										ISBN: <span class="ISBN">{{ book[0] }}</span> <br/>
+										<b class="title">{{ book[1] }}</b><br/>
+										By <b class="author">{{ book[2] }}</b><br/>
+										<span class="publisher">Publisher: {{ book[3] }}</span><br/>
+										<span></span>ISBN: <span class="ISBN">{{ book[0] }}</span> <br/>
 									</p>
 								</div>
 								<div class="col-md-2 text-center">
-									<b>${{ book[6] / 100 }}</b>
+									<b class="price">${{ book[6] / 100 }}</b>
 								</div>
 							</div>
 						{% endfor %}

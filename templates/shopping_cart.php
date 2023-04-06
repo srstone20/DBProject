@@ -4,6 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
+		<script src="/static/js/cart.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,42 +44,6 @@
 							</div>
 						</div>
 						<div class="body">
-							<div class="row">
-								<div class="col-md-2">
-									<a class="btn btn-md btn-danger" href="#">Delete</a>
-								</div>
-								<div class="col-md-7">
-									<p>
-										SQL Server 2000 for Experienced DBA's<br/>
-										<b>By:</b> Brian Knight<br/>
-										<b>Price:</b> $34.99
-									</p>
-								</div>
-								<div class="col-md-1 text-center">
-									2
-								</div>
-								<div class="col-md-2 text-end">
-									$69.98
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<a class="btn btn-md btn-danger" href="#">Delete</a>
-								</div>
-								<div class="col-md-7">
-									<p>
-										SQL Server 2000 for Experienced DBA's<br/>
-										<b>By:</b> Brian Knight<br/>
-										<b>Price:</b> $34.99
-									</p>
-								</div>
-								<div class="col-md-1 text-center">
-									2
-								</div>
-								<div class="col-md-2 text-end">
-									$69.98
-								</div>
-							</div>
 						</div>
 					</div>
 					<div class="row">
@@ -86,7 +51,7 @@
 							<a class="btn btn-md btn-secondary" href="#">Recalculate Payment</a>
 						</div>
 						<div class="col-md-6 text-end">
-							<b>Subtotal:</b> $139.96
+							<b>Subtotal:</b> <span id="subtotal"></span>
 						</div>
 					</div>
 				</div>
@@ -94,6 +59,8 @@
 		</div>
 
 		{% include './view/footer.php' %}
+
+		<script>loadCart();</script>
 
 	</body>
 </html>

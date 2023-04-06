@@ -61,11 +61,6 @@ body {
     padding: 0px;
 }
 
-.cart-container .body {
-    max-height: 300px;
-    /* overflow-y: scroll; */
-}
-
 .cart-container .body .row {
     padding: 10px;
     border-bottom: 2px solid var(--bootstrap-blue);
@@ -109,4 +104,9 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.thumbnail {
+    width:75px;
+    height:100px;
 }

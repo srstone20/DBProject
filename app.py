@@ -10,18 +10,51 @@ app = Flask(__name__)
 if __name__ == "__main__":
     app.run(debug=True)
 
+@app.route("/test", methods=["GET", "POST"])
+def test():
+    print(request.form.get("input1"))
+    return render_template("test.html")
+
 @app.route("/")
 @app.route("/index")
 def home():
     return render_template("index.php")
 
+
 @app.route("/search")
 def search():
     return render_template("search.php")
 
-@app.route("/customer_registration")
-def customer_registration():
+@app.route("/customer_registration", methods=["GET", "POST"])
+def customer_registration():    
+    con = sql.connect("sql/bbb.db")
+    cursor = con.cursor()
+
+    if request.method == "POST":
+        form = request.form
+        insertUser = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+        cursor.execute(insertUser, [
+            form['inputUsername'],
+            form['inputPIN'],
+            form['inputFirstname'],
+            form['inputLastname'],
+            form['inputAddress'],
+            form['inputAddress2'],
+            form['inputCity'],
+            form['inputState'],
+            form['inputZip'],
+            form['inputCardNum'],])
+                
+        insertCard = "INSERT INTO credit VALUES (?, ?, ?)"
+        cursor.execute(insertCard,[
+            form['inputCardNum'],
+            form['inputSecCode'],
+            form['inputExpDate'],
+        ])
+        con.commit()
+
     return render_template("customer_registration.php")
+
 
 @app.route("/user_login")
 def user_login():
@@ -55,13 +88,13 @@ def results(keyword, methods=["POST"]):
     return render_template("results.php", books=books.fetchall())
 
 
-@app.route("/reviews/<string:ISBN>", methods=["POST"])
+@app.route("/reviews/<string:ISBN>", methods=["GET"])
 def reviews(ISBN):
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
 
     reviewList = cursor.execute("SELECT review FROM review WHERE ISBN = ?", (ISBN,)).fetchall()
-    title = cursor.execute("SELECT title FROM book WHERE title = ?", (ISBN,)).fetchone()[0]
+    title = cursor.execute("SELECT title FROM book WHERE ISBN = ?", (ISBN,)).fetchone()[0]
 
     return render_template("reviews.php", title = title, reviewList = reviewList)
 
@@ -85,3 +118,15 @@ def update_customerprofile():
 @app.route("/admin_tasks")
 def admin_tasks():
     return render_template("admin_tasks.php")
+
+@app.route("/lstor")
+def lstor():
+    return render_template("__localStorageTest.html")
+
+@app.route("/lstor2")
+def lstor2():
+    return render_template("__localStorageTest2.html")
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("error/404.html")
