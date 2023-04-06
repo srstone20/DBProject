@@ -78,6 +78,8 @@ def results(keyword, methods=["POST"]):
         books = cursor.execute("SELECT * FROM book WHERE title = ?", (value,))
     elif attr == "author":
         books = cursor.execute("SELECT * FROM book WHERE author = ?", (value,))
+    elif attr == "genre":
+        books = cursor.execute("SELECT * FROM book WHERE genre = ?", (value,))
     elif attr == "publisher":
         books = cursor.execute("SELECT * FROM book WHERE publisher = ?", (value,))
     elif attr == "isbn":
@@ -85,7 +87,7 @@ def results(keyword, methods=["POST"]):
     elif attr == "anywhere":
         books = cursor.execute("SELECT * FROM book WHERE title = ? OR author = ? OR publisher = ? OR ISBN = ?", (value,value,value,value,))
     else:
-        books = cursor.execute("SELECT * FROM book WHERE title = ? OR author = ? OR publisher = ? OR ISBN = ?", (value,))
+        books = cursor.execute("SELECT * FROM book WHERE title = ? OR author = ? OR publisher = ? OR ISBN = ?", (value,value,value,value,))
     
     return render_template("results.php", books=books.fetchall())
 
