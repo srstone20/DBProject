@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, flash
 from flask import render_template
 import sqlite3 as sql
 
@@ -6,6 +6,7 @@ import sqlite3 as sql
 # cursor = con.cursor()
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -119,9 +120,17 @@ def proof_purchase():
 def update_customerprofile():
     return render_template("update_customerprofile.php")
 
-@app.route("/admin_tasks")
+@app.route("/admin_tasks", methods=["GET", "POST"])
 def admin_tasks():
-    return render_template("admin_tasks.php")
+    if request.method == "GET":
+        return render_template("admin_tasks.php")
+    if request.method == "POST":
+        username = request.form.get("username")
+        PIN = request.form.get("PIN")
+        if username == "admin" and PIN == "admin":
+            return render_template("admin_tasks.php", username=username, PIN=PIN)
+        else:
+            return render_template("admin_login.php")
 
 @app.route("/lstor")
 def lstor():
