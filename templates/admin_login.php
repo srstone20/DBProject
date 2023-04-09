@@ -15,7 +15,7 @@
 
 		<div class="container-fluid">
 			<div class="login-container bg-white shadow">
-				<form action="admin_tasks" method="post">
+				<form action="admin_login" method="post">
 					<h1 class="h3 mb-3 fw-normal">Admin Sign In</h1>
 
 					<div class="form-floating">

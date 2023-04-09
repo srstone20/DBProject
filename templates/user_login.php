@@ -14,14 +14,14 @@
 
         <div class="container-fluid">
 			<div class="login-container bg-white shadow">
-				<form>
+				<form action="search" method="post">
 					<h1 class="h3 mb-3 fw-normal">User Sign In</h1>
 					<div class="form-floating">
-						<input type="text" class="form-control" id="floatingInput">
+						<input type="text" name="username" class="form-control" id="floatingInput">
 						<label for="floatingInput">Username</label>
 					</div>
 					<div class="form-floating">
-						<input type="password" class="form-control" id="floatingPassword">
+						<input type="password" name="PIN" class="form-control" id="floatingPassword">
 						<label for="floatingPassword">PIN</label>
 					</div>
 					<br/>

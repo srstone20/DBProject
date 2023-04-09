@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, flash
+from flask import Flask, url_for, request
 from flask import render_template
 import sqlite3 as sql
 
@@ -6,7 +6,9 @@ import sqlite3 as sql
 # cursor = con.cursor()
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+# DO WE NEED TO HAVE INDIVIDUALLY SAVED CARTS BETWEEN MULTIPLE USERS?
+# ATM, IF I ADD BOOKS TO SHOPPER a's CART, THEY ALSO APPEAR IN SHOPPER b's CART AS WELL.
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -22,10 +24,28 @@ def home():
     return render_template("index.php")
 
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def search():
-    return render_template("search.php")
-
+    if request.method == "GET":
+        return render_template("search.php")
+    if request.method == "POST":
+        con = sql.connect("sql/bbb.db")
+        cursor = con.cursor()
+        # Get input username and PIN from form.
+        username = request.form.get("username")
+        PIN = request.form.get("PIN")
+        check = cursor.execute("SELECT PIN FROM user WHERE username = ?", (username,))
+        password = ""
+        for row in check.fetchall():
+            password = row[0]
+        
+        # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
+        if PIN == password:
+            return render_template("search.php", username=username, PIN=password)
+        else:
+            return render_template("user_login.php")
+        
+# GETTING AN ERROR WHEN TRYING TO INPUT NEW USER. "DATABASE IS LOCKED". ANY IDEA HOW TO BYPASS THIS?
 @app.route("/customer_registration", methods=["GET", "POST"])
 def customer_registration():    
     con = sql.connect("sql/bbb.db")
@@ -61,9 +81,18 @@ def customer_registration():
 def user_login():
     return render_template("user_login.php")
 
-@app.route("/admin_login")
+# Not sure if admin verification belongs here or under admin_tasks route
+@app.route("/admin_login", methods=["GET", "POST"])
 def admin_login():
-    return render_template("admin_login.php")
+    if request.method == "GET":
+        return render_template("admin_login.php")
+    if request.method == "POST":
+        username = request.form.get("username")
+        PIN = request.form.get("PIN")
+        if username == "admin" and PIN == "admin":
+            return render_template("admin_tasks.php", username=username, PIN=PIN)
+        else:
+            return render_template("admin_login.php")
 
 @app.route("/results/<string:keyword>")
 def results(keyword, methods=["POST"]):
@@ -120,6 +149,7 @@ def proof_purchase():
 def update_customerprofile():
     return render_template("update_customerprofile.php")
 
+# Not sure if admin verification belongs here or under admin_login route
 @app.route("/admin_tasks", methods=["GET", "POST"])
 def admin_tasks():
     if request.method == "GET":
