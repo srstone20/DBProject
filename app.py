@@ -134,7 +134,6 @@ def reviews(ISBN):
 
 @app.route("/shopping_cart")
 def shopping_cart():
-    
     return render_template("shopping_cart.php")
 
 @app.route("/confirm_order")

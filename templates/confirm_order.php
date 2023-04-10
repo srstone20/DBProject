@@ -94,13 +94,13 @@
 								<b>Subtotal:</b>
 							</div>
 							<div class="col-md-5">
-								<span id="subtotal"></span>
+								<span>$</span><span id="subtotal"></span>
 							</div>
 							<div class="col-md-7 text-end">
 								<b>Shipping & Handling:</b>
 							</div>
 							<div class="col-md-5">
-								<span>4.99</span>
+								<span>$4.99</span>
 							</div>
 							<div class="col-md-12">
 								<hr>
@@ -109,7 +109,7 @@
 								<b>Total:</b>
 							</div>
 							<div class="col-md-5">
-								<span id="total"></span>
+								<span>$</span><span id="total"></span>
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,7 @@
 						<a class="btn btn-md btn-secondary" href="update_customerprofile">Update Customer Profile</a>
 					</div>
 					<div class="col-md-3 text-end">
-						<button type="submit" class="btn btn-md btn-primary" href="#">Place Order</button>
+						<a class="btn btn-md btn-primary" href="proof_purchase">Place Order</a>
 					</div>
 				</div>
 			</div>
