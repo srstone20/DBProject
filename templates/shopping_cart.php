@@ -25,8 +25,27 @@
 							<a class="btn btn-md btn-secondary" href="/search">New Search</a>
 						</div>
 						<div class="col-md-6 text-end">
-							<a class="btn btn-md btn-primary" href="confirm_order">Proceed to Checkout</a>
+							<a class="btn btn-md btn-primary" href="confirm_order" >Proceed to Checkout</a>
+						<!--
+							Changed anchor tag to button and surrounded with form for the script below it.
+
+							<form action="shopping_cart" id="checkout" method="post">
+								<button type="submit" class="btn btn-md btn-primary" href="confirm_order" id="checkout-button">Proceed to Checkout</button>
+							</form>
+						-->
 						</div>
+							<script>
+								var checkout = document.getElementById("checkout-button");
+								but.onclick = function() {
+
+									open("/confirm_order/", "_self")
+								}
+								// Function that would call the session and see IF a user is registered.
+								// If a user is registered, it posts wich user is registered to confirm_order
+								function check_if_registered() {
+
+								}
+							</script>
 					</div>
 					<div class="cart-container">
 						<div class="row head">
@@ -51,7 +70,7 @@
 							<a class="btn btn-md btn-secondary" href="#">Recalculate Payment</a>
 						</div>
 						<div class="col-md-6 text-end">
-							<b>Subtotal:</b> <span id="subtotal"></span>
+							<b>Subtotal:</b> <span>$</span><span id="subtotal"></span>
 						</div>
 					</div>
 				</div>

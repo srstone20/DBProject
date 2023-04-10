@@ -136,9 +136,12 @@ def reviews(ISBN):
 def shopping_cart():
     return render_template("shopping_cart.php")
 
-@app.route("/confirm_order")
+@app.route("/confirm_order", methods=["GET", "POST"])
 def confirm_order():
-    return render_template("confirm_order.php")
+    if request.method == "GET":
+        return render_template("confirm_order.php")
+    if request.method == "POST":
+        return render_template("confirm_order.php")
 
 @app.route("/proof_purchase")
 def proof_purchase():
