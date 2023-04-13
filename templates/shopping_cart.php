@@ -4,7 +4,10 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
+		<link rel="stylesheet" href="/static/css/alertify.min.css">
 		<script src="/static/js/cart.js"></script>
+		<script src="/static/js/checkout.js"></script>
+		<script src="/static/js/alertify.min.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,7 +28,7 @@
 							<a class="btn btn-md btn-secondary" href="/search">New Search</a>
 						</div>
 						<div class="col-md-6 text-end">
-							<a class="btn btn-md btn-primary" href="confirm_order" >Proceed to Checkout</a>
+							<button class="btn btn-md btn-primary" onclick="startCheckout()">Proceed to Checkout</button>
 						<!--
 							Changed anchor tag to button and surrounded with form for the script below it.
 
@@ -34,18 +37,6 @@
 							</form>
 						-->
 						</div>
-							<script>
-								var checkout = document.getElementById("checkout-button");
-								but.onclick = function() {
-
-									open("/confirm_order/", "_self")
-								}
-								// Function that would call the session and see IF a user is registered.
-								// If a user is registered, it posts wich user is registered to confirm_order
-								function check_if_registered() {
-
-								}
-							</script>
 					</div>
 					<div class="cart-container">
 						<div class="row head">
@@ -80,6 +71,5 @@
 		{% include './view/footer.php' %}
 
 		<script>loadCart();</script>
-
 	</body>
 </html>
