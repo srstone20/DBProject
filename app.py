@@ -1,6 +1,7 @@
 from flask import Flask, url_for, request
 from flask import render_template
 import sqlite3 as sql
+from datetime import datetime
 
 # con = sql.connect("bbb.db")
 # cursor = con.cursor()
@@ -158,17 +159,25 @@ def confirm_order():
     if request.method == "GET":
         return render_template("confirm_order.php")
     if request.method == "POST":
+        con = sql.connect("sql/bbb.db")
+        cursor = con.cursor()
+    
+        # username = cursor.execute("SELECT username FROM user WHERE username =?", (value)).fetchall()
         return render_template("confirm_order.php")
 
-@app.route("/proof_purchase")
+@app.route("/proof_purchase", methods=["GET", "POST"])
 def proof_purchase():
-    return render_template("proof_purchase.php")
+    if request.method == "GET":
+        return render_template("proof_purchase.php")
+    if request.method == "POST":
+
+
+        return render_template("proof_purchase.php")
 
 @app.route("/update_customerprofile")
 def update_customerprofile():
     return render_template("update_customerprofile.php")
 
-# Not sure if admin verification belongs here or under admin_login route
 @app.route("/admin_tasks", methods=["GET", "POST"])
 def admin_tasks():
     if request.method == "GET":

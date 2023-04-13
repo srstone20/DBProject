@@ -9,3 +9,11 @@ function startCheckout() {
         open("/confirm_order", "_self");
     }
 }
+
+function purchase() {
+
+    let db = new sqlite3.Database('../../sql/bbb.db')
+    // INSERT PURCHASE INFO INTO THE PURCHASE TABLE
+
+    open("/proof_purchase", "_self");
+}
