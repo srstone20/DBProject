@@ -12,17 +12,22 @@
 	<body class="d-flex flex-column min-vh-100">
         
 		{% include './view/header.php' %}
-
+		
         <div class="container-fluid">
 			<div class="standard-container bg-white shadow">
-				<h1 class="h3 mb-3 fw-normal"><b>Reports:</b></h1>
+				<h1 class="h3 mb-3 fw-normal"><b>Report:</b></h1>
 				<div id="reviews-container"class="reviews-container">
-					{% for review in reviewList %}
-						<div class="row">
-							<div class="col">
-								{{review[0]}}
-							</div>
-						</div>
+				<h3>Number of Registered Users:</h3>
+					<p>{{num_of_registered_users[0]}}</p>
+				<h3>Number of Books per Genre:</h3>
+					{% for item in num_of_books_per_genre %}
+						<p>{{item}}</p>
+					{% endfor %}
+				<h3>Monthly Sales per Month:</h3>
+					<p></p>
+				<h3>Number of Reviews per Book</h3>
+					{% for item in book_titles_and_num_of_reviews %}
+						<p>{{item}}</p>
 					{% endfor %}
 				</div>
 				<div class="d-grid gap-2 col-8 mx-auto" style="padding: 0rem 10rem">
