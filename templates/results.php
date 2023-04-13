@@ -5,8 +5,11 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
 		<link rel="stylesheet" href="/static/css/quantityButton.css">
+		<link rel="stylesheet" href="/static/css/alertify.min.css">
 		<script src="/static/js/cart.js"></script>
 		<script src="/static/js/quantityButton.js"></script>
+		<script src="/static/js/checkout.js"></script>
+		<script src="/static/js/alertify.min.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -89,7 +92,8 @@
 						<a class="btn btn-md btn-secondary" href="/search" referrerpolicy="origin">New Search</a>
 					</div>
 					<div class="col-md-5 text-end">
-						<a type="submit" class="btn btn-md btn-primary" href="/confirm_order">Proceed to Checkout</a>
+						<!-- <a type="submit" class="btn btn-md btn-primary" href="/confirm_order">Proceed to Checkout</a> -->
+						<button class="btn btn-md btn-primary" onclick="startCheckout()">Proceed to Checkout</button>
 					</div>
 				</div>
 			</div>

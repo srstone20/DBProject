@@ -31,7 +31,7 @@
 							<button class="btn btn-md btn-primary" onclick="startCheckout()">Proceed to Checkout</button>
 						<!--
 							After testing, I'm always getting the popup. If I open link, login right away, then go to manage cart,
-							I get the popup even thought I just logged in.
+							I get the popup even though I just logged in.
 						-->
 						</div>
 					</div>
