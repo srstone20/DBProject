@@ -30,11 +30,8 @@
 						<div class="col-md-6 text-end">
 							<button class="btn btn-md btn-primary" onclick="startCheckout()">Proceed to Checkout</button>
 						<!--
-							Changed anchor tag to button and surrounded with form for the script below it.
-
-							<form action="shopping_cart" id="checkout" method="post">
-								<button type="submit" class="btn btn-md btn-primary" href="confirm_order" id="checkout-button">Proceed to Checkout</button>
-							</form>
+							After testing, I'm always getting the popup. If I open link, login right away, then go to manage cart,
+							I get the popup even thought I just logged in.
 						-->
 						</div>
 					</div>

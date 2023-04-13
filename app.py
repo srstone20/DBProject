@@ -94,6 +94,16 @@ def admin_login():
         else:
             return render_template("admin_login.php")
 
+@app.route("/reports")
+def reports():
+    return render_template("reports.php")
+
+    # I think we need to add a reports table to gather the information needed for reports
+        # Total number of registered customers in the system at the time and date of inquiry
+        # Total number of book titles available in each category, in descending order
+        # Average monthly sales, in dollars, for the current year, ordered by month
+        # All book titles and the number of reviews for that book
+
 @app.route("/results/<string:keyword>")
 def results(keyword, methods=["POST"]):
     # keywords = sanitize(keywords) # prevent SQL injections?
