@@ -107,7 +107,7 @@ def reports():
     num_of_registered_users = cursor.execute("SELECT COUNT(username) FROM user").fetchall()
     num_of_books_per_genre = cursor.execute("SELECT genre, COUNT(genre) FROM book WHERE genre='Fantasy' OR genre='Horror' OR genre='Realistic Fiction' OR genre='Adventure' GROUP BY genre ORDER BY COUNT(genre) DESC").fetchall()
     # monthly_sales
-    book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN").fetchall()
+    book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN GROUP BY title").fetchall()
 
     return render_template("reports.php", num_of_registered_users=num_of_registered_users, num_of_books_per_genre=num_of_books_per_genre, book_titles_and_num_of_reviews=book_titles_and_num_of_reviews)
 

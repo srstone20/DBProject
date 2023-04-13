@@ -3,3 +3,7 @@ DELETE FROM review;
 INSERT INTO review VALUES (
     "SamOk", "9786589711377", "HERE IS A REVIEW"
 );
+
+INSERT INTO review VALUES (
+    "SamOk", "9780486282114", "HERE IS A REVIEW"
+);
