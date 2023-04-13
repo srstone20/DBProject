@@ -71,6 +71,8 @@ function loadCart() {
     });
 
     document.getElementById("subtotal").innerHTML = subtotal;
+    var total = subtotal + 4.99;
+    document.getElementById("total").innerHTML = total;
 }
 
 var bookRow = [`

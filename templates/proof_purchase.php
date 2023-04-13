@@ -4,6 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
+		<script src="/static/js/cart.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,19 +21,19 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12">
-								"Customer Name"
+								<b>Customer Name:</b> <span></span>
 							</div>
 							<div class="col-md-12">
-								"Street Address"
+								<b>Street Address:</b> <span></span>
 							</div>
 							<div class="col-md-12">
-								"City"
+								<b>City:</b> <span></span>
 							</div>
 							<div class="col-md-6">
-								"State"
+								<b>State:</b> <span></span>
 							</div>
 							<div class="col-md-6">
-								"Zip"
+								<b>Zip:</b> <span></span>
 							</div>
 						</div>
 					</div>
@@ -80,66 +81,7 @@
 						</div>
 					</div>
 					<div class="body">
-						<div class="row">
-							<div class="col-md-9">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Price:</b> $34.99
-								</p>
-							</div>
-							<div class="col-md-1 text-center">
-								2
-							</div>
-							<div class="col-md-2 text-end">
-								$69.98
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-9">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Price:</b> $34.99
-								</p>
-							</div>
-							<div class="col-md-1 text-center">
-								2
-							</div>
-							<div class="col-md-2 text-end">
-								$69.98
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-9">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Price:</b> $34.99
-								</p>
-							</div>
-							<div class="col-md-1 text-center">
-								2
-							</div>
-							<div class="col-md-2 text-end">
-								$69.98
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-9">
-								<p>
-									SQL Server 2000 for Experienced DBA's<br/>
-									<b>By:</b> Brian Knight<br/>
-									<b>Price:</b> $34.99
-								</p>
-							</div>
-							<div class="col-md-1 text-center">
-								2
-							</div>
-							<div class="col-md-2 text-end">
-								$69.98
-							</div>
-						</div>
+
 					</div>
 				</div>
 				<div class="row">
@@ -152,13 +94,13 @@
 								<b>Subtotal:</b>
 							</div>
 							<div class="col-md-5">
-								$279.92
+								<span>$</span><span id="subtotal"></span>
 							</div>
 							<div class="col-md-7 text-end">
 								<b>Shipping & Handling:</b>
 							</div>
 							<div class="col-md-5">
-								$16.00
+								$4.99
 							</div>
 							<div class="col-md-12">
 								<hr>
@@ -167,7 +109,7 @@
 								<b>Total:</b>
 							</div>
 							<div class="col-md-5">
-								$295.92
+								<span>$</span><span id="total"></span>
 							</div>
 						</div>
 					</div>
@@ -188,6 +130,8 @@
 		</div>
 
 		{% include './view/footer.php' %}
+
+		<script>loadCart();</script>
 
 	</body>
 </HTML>

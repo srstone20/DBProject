@@ -1,0 +1,1 @@
+INSERT INTO user VALUES ("b", "b", "b", "b", "b", "b", "b", "MI", "48197", "1234567890101112");

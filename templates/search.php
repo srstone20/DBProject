@@ -42,6 +42,7 @@
 								<option value="anywhere">Keyword anywhere</option>
 								<option value="title">Title</option>
 								<option value="author">Author</option>
+								<option value="genre">Genre</option>
 								<option value="publisher">Publisher</option>
 								<option value="isbn">ISBN</option>
 							</select>
@@ -66,21 +67,7 @@
 				</div>
 				<br/>
 				<div class="row">
-					<div class="col-md-3">
-						<div class="d-flex align-items-center" style="height: 100%;">
-							<b>Category:</b>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<select id="inputState" class="form-select">
-							<option selected>All Categories</option>
-							<option value='1'>Fantasy</option>
-							<option value='2'>Adventure</option>
-							<option value='3'>Fiction</option>
-							<option value='4'>Horror</option>
-						</select>
-					</div>
-					<div class="col-md-3 text-end">
+					<div class="col-md-3 text-end" style="display: flex; justify-content: center;">
 						<a class="btn btn-md btn-warning" href="/index">Exit 3-B.com</a>
 					</div>
 				</div>
