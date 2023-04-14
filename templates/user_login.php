@@ -3,6 +3,10 @@
 	<head>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
+		<link rel="stylesheet" href="/static/css/alertify.min.css">
+
+		<script src="/static/js/login.js"></script>
+		<script src="/static/js/alertify.min.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,11 +21,11 @@
 				<form action="search" method="post">
 					<h1 class="h3 mb-3 fw-normal">User Sign In</h1>
 					<div class="form-floating">
-						<input type="text" name="username" class="form-control" id="floatingInput">
-						<label for="floatingInput">Username</label>
+						<input id="floatingInput" type="text" name="username" class="form-control" id="floatingInput">
+						<label for="floatingPassword">Username</label>
 					</div>
 					<div class="form-floating">
-						<input type="password" name="PIN" class="form-control" id="floatingPassword">
+						<input id="floatingPassword" type="password" name="PIN" class="form-control" id="floatingPassword">
 						<label for="floatingPassword">PIN</label>
 					</div>
 					<br/>
