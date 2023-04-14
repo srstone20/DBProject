@@ -4,12 +4,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
         <link rel="stylesheet" href="/static/css/custom.css">
 
+        <script src="static/js/session.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Welcome to Best Book Buy Online Bookstore!</title>
     </head>
     <body class="d-flex flex-column min-vh-100">
-        
+        <script>clearSession();</script>
         {% include './view/header.php' %}
 
         <div class="container-fluid">

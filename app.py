@@ -32,9 +32,6 @@ def search():
         if request.form.get("username") == "" or request.form.get("PIN") == "":
             return render_template("user_login.php")
         else:
-            session['username'] = request.form.get("username")
-            test = session['username']
-
             con = sql.connect("sql/bbb.db")
             cursor = con.cursor()
             # Get input username and PIN from form.
@@ -47,7 +44,7 @@ def search():
             
             # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
             if PIN == password:
-                return render_template("search.php", username=username, PIN=password, test=test)
+                return render_template("search.php", username=username, PIN=password)
             else:
                 return render_template("user_login.php")
         

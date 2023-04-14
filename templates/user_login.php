@@ -27,14 +27,11 @@
 					<br/>
 					<button class="w-100 btn btn-lg btn-primary" onclick="login()" type="submit">Sign in</button>
 					<script>
-						sessionStorage.setItem("key", "value");
 						function login() {
-							if document.getElementsByName("username") != null && document.getElementsByName("PIN") != null {
-								var inputUsername = document.getElementById("username");
-								var inputPassword = document.getElementById("PIN");
-								sessionStorage.setItem('username', "b");
-								sessionStorage.setItem('password', "b");
-							}
+							var inputUsername = document.getElementById("floatingInput").value;
+							var inputPassword = document.getElementById("floatingPassword").value;
+							sessionStorage.setItem('username', inputUsername);
+							sessionStorage.setItem('password', inputPassword);
 						}
 					</script>
 				</form>

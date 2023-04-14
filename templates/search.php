@@ -13,10 +13,6 @@
         
 		{% include './view/header.php' %}
 
-		<h1>{{username}}</h1>
-		<h1>{{PIN}}</h1>
-		<h1>{{test}}</h1>
-
 		<div class="container-fluid">
 			<div class="standard-container bg-white shadow">
 				<h1 class="h3 mb-3 fw-normal">New Search</h1>
