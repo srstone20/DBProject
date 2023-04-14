@@ -18,7 +18,7 @@
 
         <div class="container-fluid">
 			<div class="login-container bg-white shadow">
-				<form method="post">
+				<form action="search" method="post">
 					<h1 class="h3 mb-3 fw-normal">User Sign In</h1>
 					<div class="form-floating">
 						<input id="in-username" type="text" name="username" class="form-control" id="floatingInput">
