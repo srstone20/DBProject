@@ -13,6 +13,10 @@
         
 		{% include './view/header.php' %}
 
+		<h1>{{username}}</h1>
+		<h1>{{PIN}}</h1>
+		<h1>{{test}}</h1>
+
 		<div class="container-fluid">
 			<div class="standard-container bg-white shadow">
 				<h1 class="h3 mb-3 fw-normal">New Search</h1>
@@ -59,6 +63,10 @@
 							function parseSearch() {
 								return document.getElementById("search-bar").value;
 							}
+							let username = sessionStorage.getItem('username');
+							let password = sessionStorage.getItem('password');
+							console.log(username);
+							console.log(password);
 
 					</script>
 					<div class="col-md-3 text-end">

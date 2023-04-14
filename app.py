@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, session
 from flask import render_template
 import sqlite3 as sql
 from datetime import datetime
@@ -8,8 +8,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# DO WE NEED TO HAVE INDIVIDUALLY SAVED CARTS BETWEEN MULTIPLE USERS?
-# ATM, IF I ADD BOOKS TO SHOPPER a's CART, THEY ALSO APPEAR IN SHOPPER b's CART AS WELL.
+app.secret_key = "SECRET_KEY"
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -30,21 +29,27 @@ def search():
     if request.method == "GET":
         return render_template("search.php")
     if request.method == "POST":
-        con = sql.connect("sql/bbb.db")
-        cursor = con.cursor()
-        # Get input username and PIN from form.
-        username = request.form.get("username")
-        PIN = request.form.get("PIN")
-        check = cursor.execute("SELECT PIN FROM user WHERE username = ?", (username,))
-        password = ""
-        for row in check.fetchall():
-            password = row[0]
-        
-        # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
-        if PIN == password:
-            return render_template("search.php", username=username, PIN=password)
-        else:
+        if request.form.get("username") == "" or request.form.get("PIN") == "":
             return render_template("user_login.php")
+        else:
+            session['username'] = request.form.get("username")
+            test = session['username']
+
+            con = sql.connect("sql/bbb.db")
+            cursor = con.cursor()
+            # Get input username and PIN from form.
+            username = request.form.get("username")
+            PIN = request.form.get("PIN")
+            check = cursor.execute("SELECT PIN FROM user WHERE username = ?", (username,))
+            password = ""
+            for row in check.fetchall():
+                password = row[0]
+            
+            # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
+            if PIN == password:
+                return render_template("search.php", username=username, PIN=password, test=test)
+            else:
+                return render_template("user_login.php")
         
 # GETTING AN ERROR WHEN TRYING TO INPUT NEW USER. "DATABASE IS LOCKED". ANY IDEA HOW TO BYPASS THIS?
 @app.route("/customer_registration", methods=["GET", "POST"])
@@ -78,9 +83,14 @@ def customer_registration():
     return render_template("customer_registration.php")
 
 
-@app.route("/user_login")
+@app.route("/user_login", methods=["GET", "POST"])
 def user_login():
-    return render_template("user_login.php")
+    if request.method == "GET":
+        return render_template("user_login.php")
+    if request.method == "POST":
+        session['username'] = request.form.get('username')
+        session['password'] = request.form.get('PIN')
+        return render_template("user_login.php")
 
 # Not sure if admin verification belongs here or under admin_tasks route
 @app.route("/admin_login", methods=["GET", "POST"])
@@ -161,9 +171,9 @@ def confirm_order():
     if request.method == "POST":
         con = sql.connect("sql/bbb.db")
         cursor = con.cursor()
-    
+        username = session['username']
         # username = cursor.execute("SELECT username FROM user WHERE username =?", (value)).fetchall()
-        return render_template("confirm_order.php")
+        return render_template("confirm_order.php", username=username)
 
 @app.route("/proof_purchase", methods=["GET", "POST"])
 def proof_purchase():

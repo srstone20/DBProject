@@ -14,7 +14,8 @@
 	<body class="d-flex flex-column min-vh-100">
         
 		{% include './view/header.php' %}
-
+	<script>console.log(sessionStorage.getItem("username"));</script>
+	<script>console.log(sessionStorage.getItem("password"));</script>
 		<div class=container-fluid>
 			<div class="standard-container bg-white shadow">
 				<h1 class="h3 mb-3 fw-normal">Confirm Order</h1>
