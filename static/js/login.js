@@ -3,6 +3,8 @@ function login() {
     var password = document.getElementById("in-password").value;
 
     if (username == "" || password == "") {
+        alertify.alert("Incomplete Information", "You did not complete filling in the fields.")
+            .set('labels', {ok:'Try Again'});
         return;
     }
 
@@ -21,7 +23,7 @@ function login() {
             }
             else {
                 console.log("fail");
-                alertify.alert("Enter Information", "Please fill all fields to sign in.")
+                alertify.alert("Incorrect Input Information", "The information entered was not matched as a valid login.")
                     .set('labels', {ok:'Try Again'});
             }
         }
