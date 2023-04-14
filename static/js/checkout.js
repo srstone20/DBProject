@@ -10,10 +10,12 @@ function startCheckout() {
     }
 }
 
-function purchase() {
+// Loads customer information for order (top of the page stuff)
+function loadOrder() {
 
-    let db = new sqlite3.Database('../../sql/bbb.db')
-    // INSERT PURCHASE INFO INTO THE PURCHASE TABLE
+}
+
+function purchase() {
 
     open("/proof_purchase", "_self");
 }

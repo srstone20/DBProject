@@ -23,7 +23,9 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12">
-								"Customer Name"
+								<span id="fname"></span>
+								{{ fname }}
+								<span id="lname"></span>
 							</div>
 							<div class="col-md-12">
 								"Street Address"
@@ -38,6 +40,13 @@
 								"Zip"
 							</div>
 						</div>
+						<script>
+							function fname() {
+								username = sessionStorage.getItem("username");
+								document.getElementById("fname").innerHTML = username;
+								console.log(username);
+							}
+						</script>
 					</div>
 					<div class="col-md-8">
 						<div class="row">
@@ -135,6 +144,8 @@
 		{% include './view/footer.php' %}
 
 		<script>loadCart();</script>
+		<!-- <script>loadOrder();</script> -->
+		<script>fname();</script>
 
 	</body>
 </HTML>
