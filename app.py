@@ -1,5 +1,5 @@
-from flask import Flask, url_for, request
-from flask import render_template
+from flask import Flask, request, Response, render_template, make_response
+import json
 import sqlite3 as sql
 
 # con = sql.connect("bbb.db")
@@ -77,8 +77,22 @@ def customer_registration():
     return render_template("customer_registration.php")
 
 
-@app.route("/user_login")
+@app.route("/user_login", methods=["GET", "POST"])
 def user_login():
+    print("hi")
+    if request.method == "POST":
+        d = json.loads(request.data)
+        print(d["username"])
+        print(d["password"])
+        con = sql.connect("sql/bbb.db")
+        curs = con.cursor()
+        user = curs.execute("SELECT * FROM user WHERE (username = ? AND pin = ?)", [d["username"], d["password"],]).fetchone()
+        print(user)
+        if user is None:
+            return make_response("fail")
+        else:
+            return make_response("success")
+        
     return render_template("user_login.php")
 
 # Not sure if admin verification belongs here or under admin_tasks route
