@@ -82,7 +82,6 @@ def customer_registration():
 
 @app.route("/user_login", methods=["GET", "POST"])
 def user_login():
-    print("hi")
     if request.method == "POST":
         d = json.loads(request.data)
         print(d["username"])
