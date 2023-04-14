@@ -25,7 +25,7 @@
 						<label for="floatingPassword">Username</label>
 					</div>
 					<div class="form-floating">
-						<input id="in-password" type="password" name="PIN" class="form-control" id="floatingPassword">
+						<input id="floatingPassword" type="password" name="PIN" class="form-control" id="floatingPassword">
 						<label for="floatingPassword">PIN</label>
 					</div>
 					<br/>
