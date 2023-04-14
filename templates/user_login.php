@@ -25,7 +25,15 @@
 						<label for="floatingPassword">PIN</label>
 					</div>
 					<br/>
-					<button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+					<button class="w-100 btn btn-lg btn-primary" onclick="login()" type="submit">Sign in</button>
+					<script>
+						function login() {
+							var inputUsername = document.getElementById("floatingInput").value;
+							var inputPassword = document.getElementById("floatingPassword").value;
+							sessionStorage.setItem('username', inputUsername);
+							sessionStorage.setItem('password', inputPassword);
+						}
+					</script>
 				</form>
 				<br/>
 				<div class="d-grid gap-2 col-6 mx-auto">

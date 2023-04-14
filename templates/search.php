@@ -59,6 +59,10 @@
 							function parseSearch() {
 								return document.getElementById("search-bar").value;
 							}
+							let username = sessionStorage.getItem('username');
+							let password = sessionStorage.getItem('password');
+							console.log(username);
+							console.log(password);
 
 					</script>
 					<div class="col-md-3 text-end">

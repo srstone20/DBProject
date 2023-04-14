@@ -1,14 +1,14 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, session
 from flask import render_template
 import sqlite3 as sql
+from datetime import datetime
 
 # con = sql.connect("bbb.db")
 # cursor = con.cursor()
 
 app = Flask(__name__)
 
-# DO WE NEED TO HAVE INDIVIDUALLY SAVED CARTS BETWEEN MULTIPLE USERS?
-# ATM, IF I ADD BOOKS TO SHOPPER a's CART, THEY ALSO APPEAR IN SHOPPER b's CART AS WELL.
+app.secret_key = "SECRET_KEY"
 
 if __name__ == "__main__":
     app.run(debug=True)
@@ -29,21 +29,24 @@ def search():
     if request.method == "GET":
         return render_template("search.php")
     if request.method == "POST":
-        con = sql.connect("sql/bbb.db")
-        cursor = con.cursor()
-        # Get input username and PIN from form.
-        username = request.form.get("username")
-        PIN = request.form.get("PIN")
-        check = cursor.execute("SELECT PIN FROM user WHERE username = ?", (username,))
-        password = ""
-        for row in check.fetchall():
-            password = row[0]
-        
-        # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
-        if PIN == password:
-            return render_template("search.php", username=username, PIN=password)
-        else:
+        if request.form.get("username") == "" or request.form.get("PIN") == "":
             return render_template("user_login.php")
+        else:
+            con = sql.connect("sql/bbb.db")
+            cursor = con.cursor()
+            # Get input username and PIN from form.
+            username = request.form.get("username")
+            PIN = request.form.get("PIN")
+            check = cursor.execute("SELECT PIN FROM user WHERE username = ?", (username,))
+            password = ""
+            for row in check.fetchall():
+                password = row[0]
+            
+            # If given password is the same as the password for given username in database, allow user to go to search page. Otherwise, reload user login page.
+            if PIN == password:
+                return render_template("search.php", username=username, PIN=password)
+            else:
+                return render_template("user_login.php")
         
 # GETTING AN ERROR WHEN TRYING TO INPUT NEW USER. "DATABASE IS LOCKED". ANY IDEA HOW TO BYPASS THIS?
 @app.route("/customer_registration", methods=["GET", "POST"])
@@ -77,9 +80,14 @@ def customer_registration():
     return render_template("customer_registration.php")
 
 
-@app.route("/user_login")
+@app.route("/user_login", methods=["GET", "POST"])
 def user_login():
-    return render_template("user_login.php")
+    if request.method == "GET":
+        return render_template("user_login.php")
+    if request.method == "POST":
+        session['username'] = request.form.get('username')
+        session['password'] = request.form.get('PIN')
+        return render_template("user_login.php")
 
 # Not sure if admin verification belongs here or under admin_tasks route
 @app.route("/admin_login", methods=["GET", "POST"])
@@ -93,6 +101,23 @@ def admin_login():
             return render_template("admin_tasks.php", username=username, PIN=PIN)
         else:
             return render_template("admin_login.php")
+
+@app.route("/reports")
+def reports():
+    # Need to run 4 queries to get each info:
+        # Total number of registered customers in the system at the time and date of inquiry
+        # Total number of book titles available in each category, in descending order
+        # Average monthly sales, in dollars, for the current year, ordered by month
+        # All book titles and the number of reviews for that book
+    con = sql.connect("sql/bbb.db")
+    cursor = con.cursor()
+
+    num_of_registered_users = cursor.execute("SELECT COUNT(username) FROM user").fetchall()
+    num_of_books_per_genre = cursor.execute("SELECT genre, COUNT(genre) FROM book WHERE genre='Fantasy' OR genre='Horror' OR genre='Realistic Fiction' OR genre='Adventure' GROUP BY genre ORDER BY COUNT(genre) DESC").fetchall()
+    # monthly_sales
+    book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN GROUP BY title").fetchall()
+
+    return render_template("reports.php", num_of_registered_users=num_of_registered_users, num_of_books_per_genre=num_of_books_per_genre, book_titles_and_num_of_reviews=book_titles_and_num_of_reviews)
 
 @app.route("/results/<string:keyword>")
 def results(keyword, methods=["POST"]):
@@ -141,17 +166,25 @@ def confirm_order():
     if request.method == "GET":
         return render_template("confirm_order.php")
     if request.method == "POST":
-        return render_template("confirm_order.php")
+        con = sql.connect("sql/bbb.db")
+        cursor = con.cursor()
+        username = session['username']
+        # username = cursor.execute("SELECT username FROM user WHERE username =?", (value)).fetchall()
+        return render_template("confirm_order.php", username=username)
 
-@app.route("/proof_purchase")
+@app.route("/proof_purchase", methods=["GET", "POST"])
 def proof_purchase():
-    return render_template("proof_purchase.php")
+    if request.method == "GET":
+        return render_template("proof_purchase.php")
+    if request.method == "POST":
+
+
+        return render_template("proof_purchase.php")
 
 @app.route("/update_customerprofile")
 def update_customerprofile():
     return render_template("update_customerprofile.php")
 
-# Not sure if admin verification belongs here or under admin_login route
 @app.route("/admin_tasks", methods=["GET", "POST"])
 def admin_tasks():
     if request.method == "GET":
