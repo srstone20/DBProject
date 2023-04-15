@@ -1,7 +1,7 @@
 from flask import Flask, request, session, Response, render_template, make_response
 import json
 import sqlite3 as sql
-from datetime import datetime
+from datetime import datetime, date, time
 
 # con = sql.connect("bbb.db")
 # cursor = con.cursor()
@@ -182,9 +182,17 @@ def proof_purchase():
     if request.method == "GET":
         return render_template("proof_purchase.php")
     if request.method == "POST":
+        con = sql.connect("sql/bbb.db")
+        cursor = con.cursor()
+        login = json.loads(request.data)
+        userID = login['username']
+        dt = datetime.now()
+        date = dt.strftime("%A, %B %d")
+        time = dt.strftime("%I:%M%p")
 
+        response = f'{{"userID":"{userID}","date":"{date}","time":"{time}"}}'
 
-        return render_template("proof_purchase.php")
+        return make_response(response)
 
 @app.route("/update_customerprofile", methods=["GET", "POST"])
 def update_customerprofile():
