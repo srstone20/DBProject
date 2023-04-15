@@ -131,7 +131,7 @@
 
 		{% include './view/footer.php' %}
 
-		<script>loadCart();</script>
+		<script>loadPurchase();</script>
 
 	</body>
 </HTML>

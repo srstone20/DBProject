@@ -42,6 +42,61 @@ function removeFromCart(isbn) {
     }
 }
 
+function moveCartToPurchase() {
+    console.log("here");
+
+    // retrive all isbns and their information from cart
+    var isbns = JSON.parse(localStorage.getItem("isbns"));
+    var purchased = [];
+    var info = [];
+    isbns.forEach((element) => {
+        purchased.push("p-" + element);
+        info.push(localStorage.getItem(element));
+    })
+
+    // clear cart
+    localStorage.clear();
+
+    // put purchased books into their own place
+    for (var i = 0; i < purchased.length; i++) {
+        localStorage.setItem(purchased[i], info[i]);
+    }
+    localStorage.setItem("purchased", JSON.stringify(purchased));
+}
+
+function loadPurchase() {
+    var cartContainer = document.querySelector(".body");
+
+    var isbnsStr = localStorage.getItem("purchased");
+    if (isbnsStr == null || isbnsStr == "[]") {
+        cartContainer.innerHTML = "Nothing in your cart. Let's fix that!"
+        return;
+    }
+    var isbns = JSON.parse(isbnsStr);
+
+    var subtotal = 0;
+    isbns.forEach(isbn => {
+        var book = JSON.parse(localStorage.getItem(isbn));
+        console.log(book);
+        cartContainer.innerHTML +=
+            bookRow[0] + isbn + 
+            bookRow[1] + isbn +
+            bookRow[2] + book[3] + // image
+            bookRow[3] + book[0] + // title
+            bookRow[4] + book[1] + // author
+            bookRow[5] + book[2] + // price
+            bookRow[6] + isbn + // isbn
+            bookRow[7] + book[4] + // quantity
+            bookRow[8] + (parseFloat(book[2]) * parseFloat(book[4])); // sum quantity
+        
+        subtotal += parseFloat(book[2]) * parseFloat(book[4]);
+    });
+
+    document.getElementById("subtotal").innerHTML = subtotal;
+    var total = subtotal + 4.99;
+    document.getElementById("total").innerHTML = total;
+}
+
 function loadCart() {
     var cartContainer = document.querySelector(".body");
 
