@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 		<link rel="stylesheet" href="/static/css/custom.css">
 		<script src="/static/js/cart.js"></script>
+		<script src="/static/js/checkout.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -21,49 +22,54 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12">
-								<b>Customer Name:</b> <span></span>
+								Customer Name:
+								<b><span id="fname"></span><span id="lname"></span></b>
 							</div>
 							<div class="col-md-12">
-								<b>Street Address:</b> <span></span>
+								Address:
+								<b><span id="address"></span></b>
 							</div>
 							<div class="col-md-12">
-								<b>City:</b> <span></span>
+								City:
+								<b><span id="city"></span></b>
 							</div>
 							<div class="col-md-6">
-								<b>State:</b> <span></span>
+								State:
+								<b><span id="state"></span></b>
 							</div>
 							<div class="col-md-6">
-								<b>Zip:</b> <span></span>
+								Zip:
+								<b><span id="zipcode"></span></b>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-8">
 						<div class="row">
 							<div class="col-md-5 text-end">
-								<b>User ID:</b>
+								User ID:
 							</div>
 							<div class="col-md-6">
-								"Username"
+								<b><span id="userID"></span></b>
 							</div>
 							<div class="col-md-5 text-end">
-								<b>Date:</b>
+								Date:
 							</div>
 							<div class="col-md-6">
-								"08/09/2022"
+								<b><span id="date"></span></b>
 							</div>
 							<div class="col-md-5 text-end">
-								<b>Time:</b>
+								Time:
 							</div>
 							<div class="col-md-6">
-								"10:47:23"
+								<b><span id="time"></span></b>
 							</div>
 							<br/>
 							<br/>
 							<div class="col-md-12 text-center">
-								<b>Credit Card Information:</b>
+								Credit Card Information:
 							</div>
 							<div class="col-md-12 text-center">
-								"Visa 1234-5678-9012-3456"
+								<b><span id="card_no"></span></b>
 							</div>
 						</div>
 					</div>
@@ -132,6 +138,8 @@
 		{% include './view/footer.php' %}
 
 		<script>loadPurchase();</script>
-
+		<script>loadUserInfo();</script>
+		<script>purchase();</script>
+		
 	</body>
 </HTML>
