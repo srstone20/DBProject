@@ -1,3 +1,4 @@
+// used to display user info on screen
 function getUserInfo() {
     var u = sessionStorage.getItem("username");
     if (u == null || u == "") {
