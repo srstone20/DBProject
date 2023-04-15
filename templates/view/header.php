@@ -13,7 +13,7 @@
             </div>    
         </a>
         <div>
-            <p>Logged in as: <b id="disp-username">No One</b></p>
+            <p>Logged in as: <b class="disp-username">No One</b></p>
         </div>
         <script>getUserInfo();</script>
     </header>

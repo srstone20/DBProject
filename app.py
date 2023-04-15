@@ -186,9 +186,47 @@ def proof_purchase():
 
         return render_template("proof_purchase.php")
 
-@app.route("/update_customerprofile")
+@app.route("/update_customerprofile", methods=["GET", "POST"])
 def update_customerprofile():
-    return render_template("update_customerprofile.php")
+    if request.method == "GET":
+        return render_template("update_customerprofile.php")
+    else:
+        print("POST")
+
+        form = request.form
+        con = sql.connect("sql/bbb.db")
+        cursor = con.cursor()
+        usernameResult = cursor.execute("SELECT username FROM user WHERE username = ?", [form['inputUsername']]).fetchone()
+        print(form["inputUsername"])
+        print(usernameResult)
+        
+        # validate input information
+        if (usernameResult is None):
+            print("no match username")
+            return render_template("update_customerprofile.php")
+        if (form['inputPIN'] != form["inputPIN2"]):
+            print("not same pin")
+            return render_template("update_customerprofile.php")
+        
+        cursor.execute("UPDATE user SET pin = ?, fname = ?, lname = ?, address = ?, address2 = ?, city = ?, state = ?, zip = ?, card_no = ? WHERE username = ?", [
+            form['inputPIN'],
+            form['inputFirstname'],
+            form['inputLastname'],
+            form['inputAddress'],
+            form['inputAddress2'],
+            form['inputCity'],
+            form['inputState'],
+            form['inputZip'],
+            form['inputCardNum'],
+            form['inputUsername']])
+        
+        res = cursor.execute("SELECT * FROM user where username = ?", [form["inputUsername"]])
+        print("ok")
+        print(res.fetchone())
+
+        con.commit()
+        
+        return render_template("search.php")
 
 @app.route("/admin_tasks", methods=["GET", "POST"])
 def admin_tasks():

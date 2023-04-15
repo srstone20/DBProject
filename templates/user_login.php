@@ -22,7 +22,7 @@
 					<h1 class="h3 mb-3 fw-normal">User Sign In</h1>
 					<div class="form-floating">
 						<input id="floatingInput" type="text" name="username" class="form-control" id="floatingInput">
-						<label for="floatingPassword">Username</label>
+						<label for="floatingInput">Username</label>
 					</div>
 					<div class="form-floating">
 						<input id="floatingPassword" type="password" name="PIN" class="form-control" id="floatingPassword">

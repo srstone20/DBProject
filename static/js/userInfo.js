@@ -3,5 +3,9 @@ function getUserInfo() {
     if (u == null || u == "") {
         return;
     }
-    document.getElementById("disp-username").innerHTML = sessionStorage.getItem("username");
+    var tags = document.getElementsByClassName("disp-username");
+    for (var i = 0; i < tags.length; i++) {
+        tags[i].innerHTML = sessionStorage.getItem("username");
+        tags[i].value = sessionStorage.getItem("username");
+    }
 }
