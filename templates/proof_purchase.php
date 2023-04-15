@@ -137,6 +137,7 @@
 
 		{% include './view/footer.php' %}
 
+		<script>purchase();</script>
 		<script>loadPurchase();</script>
 		<script>loadUserInfo();</script>
 		
