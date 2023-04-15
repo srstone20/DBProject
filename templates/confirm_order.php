@@ -23,30 +23,26 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12">
-								<span id="fname"></span>
-								{{ fname }}
-								<span id="lname"></span>
+								Customer Name:
+								<b><span id="fname"></span><span id="lname"></span></b>
 							</div>
 							<div class="col-md-12">
-								"Street Address"
+								Address:
+								<b><span id="address"></span></b>
 							</div>
 							<div class="col-md-12">
-								"City"
+								City:
+								<b><span id="city"></span></b>
 							</div>
 							<div class="col-md-6">
-								"State"
+								State:
+								<b><span id="state"></span></b>
 							</div>
 							<div class="col-md-6">
-								"Zip"
+								Zip:
+								<b><span id="zipcode"></span></b>
 							</div>
 						</div>
-						<script>
-							function fname() {
-								username = sessionStorage.getItem("username");
-								document.getElementById("fname").innerHTML = username;
-								console.log(username);
-							}
-						</script>
 					</div>
 					<div class="col-md-8">
 						<div class="row">
@@ -57,7 +53,7 @@
 								</label>
 							</div>
 							<div class="col-md-12">
-								"Visa 1234-5678-9012-3456"
+								<b><span id="card_no"></span></b>
 							</div>
 							<div class="col-md-12">
 								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
@@ -144,8 +140,7 @@
 		{% include './view/footer.php' %}
 
 		<script>loadCart();</script>
-		<!-- <script>loadOrder();</script> -->
-		<script>fname();</script>
+		<script>loadUserInfo();</script>
 
 	</body>
 </HTML>

@@ -163,14 +163,19 @@ def confirm_order():
     if request.method == "POST":
         con = sql.connect("sql/bbb.db")
         cursor = con.cursor()
-        if 'python' in session:
-            username = session['username']
-            return render_template("confirm_order.php")
-        else:
-            return render_template("error/404.html")
-        # username = "t"
-        # fname = cursor.execute("SELECT fname FROM user WHERE username = ?", (username)).fetchone()[0]
-        # return render_template("confirm_order.php", fname=fname)
+        login = json.loads(request.data)
+        username = login['username']
+        fname = cursor.execute("SELECT fname FROM user WHERE username = ?", (username,)).fetchone()[0]
+        lname = cursor.execute("SELECT lname FROM user WHERE username = ?", (username,)).fetchone()[0]
+        address = cursor.execute("SELECT address FROM user WHERE username = ?", (username,)).fetchone()[0]
+        city = cursor.execute("SELECT city FROM user WHERE username = ?", (username,)).fetchone()[0]
+        state = cursor.execute("SELECT state FROM user WHERE username = ?", (username,)).fetchone()[0]
+        zipcode = cursor.execute("SELECT zip FROM user WHERE username = ?", (username,)).fetchone()[0]
+        card_no = cursor.execute("SELECT card_no FROM user WHERE username = ?", (username,)).fetchone()[0]
+
+        response = f'{{"fname":"{fname}","lname":"{lname}","address":"{address}","city":"{city}","state":"{state}","zipcode":"{zipcode}","card_no":"{card_no}"}}'
+
+        return make_response(response)
 
 @app.route("/proof_purchase", methods=["GET", "POST"])
 def proof_purchase():
