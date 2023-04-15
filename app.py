@@ -48,7 +48,6 @@ def search():
             else:
                 return render_template("user_login.php")
         
-# GETTING AN ERROR WHEN TRYING TO INPUT NEW USER. "DATABASE IS LOCKED". ANY IDEA HOW TO BYPASS THIS?
 @app.route("/customer_registration", methods=["GET", "POST"])
 def customer_registration():    
     con = sql.connect("sql/bbb.db")
@@ -109,10 +108,11 @@ def reports():
 
     num_of_registered_users = cursor.execute("SELECT COUNT(username) FROM user").fetchall()
     num_of_books_per_genre = cursor.execute("SELECT genre, COUNT(genre) FROM book WHERE genre='Fantasy' OR genre='Horror' OR genre='Realistic Fiction' OR genre='Adventure' GROUP BY genre ORDER BY COUNT(genre) DESC").fetchall()
+    monthly_sales = cursor.execute("SELECT ").fetchall()
     # Average monthly sales, in dollars, for the current year, ordered by month
     book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN GROUP BY title").fetchall()
 
-    return render_template("reports.php", num_of_registered_users=num_of_registered_users, num_of_books_per_genre=num_of_books_per_genre, book_titles_and_num_of_reviews=book_titles_and_num_of_reviews)
+    return render_template("reports.php", num_of_registered_users=num_of_registered_users, num_of_books_per_genre=num_of_books_per_genre, monthly_sales=monthly_sales, book_titles_and_num_of_reviews=book_titles_and_num_of_reviews)
 
 @app.route("/results/<string:keyword>")
 def results(keyword, methods=["POST"]):
@@ -186,11 +186,24 @@ def proof_purchase():
         cursor = con.cursor()
         login = json.loads(request.data)
         userID = login['username']
+
         dt = datetime.now()
         date = dt.strftime("%A, %B %d")
         time = dt.strftime("%I:%M%p")
 
         response = f'{{"userID":"{userID}","date":"{date}","time":"{time}"}}'
+
+        date_purchased = date
+        subtotal = login['subtotal']
+        tax = 0.00
+        shipping_cost = 4.99
+        total = login['total']
+        username = userID
+
+        cursor.execute(
+            "INSERT INTO purchase (date_purchased, subtotal, tax, shipping_cost, total, username) VALUES (?, ?, ?, ?, ?, ?)", (date_purchased, subtotal, tax, shipping_cost, total, username),
+            )
+        con.commit()
 
         return make_response(response)
 
