@@ -10,6 +10,10 @@ function startCheckout() {
     }
 }
 
+function openProofPurchase() {
+    open("/proof_purchase", "_self");
+}
+
 // Loads customer information for order (top of the page stuff)
 function loadUserInfo() {
     var username = sessionStorage.getItem("username");
@@ -37,6 +41,21 @@ function loadUserInfo() {
 }
 
 function purchase() {
+    var username = sessionStorage.getItem("username");
+    var password = sessionStorage.getItem("password");
+    var subtotal = sessionStorage.getItem("subtotal");
+    var total = sessionStorage.getItem("total");
 
-    open("/proof_purchase", "_self");
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/proof_purchase");
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            console.log(response);
+            document.getElementById("userID").innerHTML = response['userID'];
+            document.getElementById("date").innerHTML = response['date'];
+            document.getElementById("time").innerHTML = response['time'];
+        }
+    }
+    xhr.send(`{"username":"${username}","password":"${password}","subtotal":"${subtotal}","total":"${total}"}`);
 }
