@@ -3,3 +3,4 @@ __pycache__/*
 venv
 GitVisual.png
 Procfile
+sql/bbb.db
