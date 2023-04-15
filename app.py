@@ -104,17 +104,12 @@ def admin_login():
 
 @app.route("/reports")
 def reports():
-    # Need to run 4 queries to get each info:
-        # Total number of registered customers in the system at the time and date of inquiry
-        # Total number of book titles available in each category, in descending order
-        # Average monthly sales, in dollars, for the current year, ordered by month
-        # All book titles and the number of reviews for that book
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
 
     num_of_registered_users = cursor.execute("SELECT COUNT(username) FROM user").fetchall()
     num_of_books_per_genre = cursor.execute("SELECT genre, COUNT(genre) FROM book WHERE genre='Fantasy' OR genre='Horror' OR genre='Realistic Fiction' OR genre='Adventure' GROUP BY genre ORDER BY COUNT(genre) DESC").fetchall()
-    # monthly_sales
+    # Average monthly sales, in dollars, for the current year, ordered by month
     book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN GROUP BY title").fetchall()
 
     return render_template("reports.php", num_of_registered_users=num_of_registered_users, num_of_books_per_genre=num_of_books_per_genre, book_titles_and_num_of_reviews=book_titles_and_num_of_reviews)
@@ -168,9 +163,19 @@ def confirm_order():
     if request.method == "POST":
         con = sql.connect("sql/bbb.db")
         cursor = con.cursor()
-        username = session['username']
-        # username = cursor.execute("SELECT username FROM user WHERE username =?", (value)).fetchall()
-        return render_template("confirm_order.php", username=username)
+        login = json.loads(request.data)
+        username = login['username']
+        fname = cursor.execute("SELECT fname FROM user WHERE username = ?", (username,)).fetchone()[0]
+        lname = cursor.execute("SELECT lname FROM user WHERE username = ?", (username,)).fetchone()[0]
+        address = cursor.execute("SELECT address FROM user WHERE username = ?", (username,)).fetchone()[0]
+        city = cursor.execute("SELECT city FROM user WHERE username = ?", (username,)).fetchone()[0]
+        state = cursor.execute("SELECT state FROM user WHERE username = ?", (username,)).fetchone()[0]
+        zipcode = cursor.execute("SELECT zip FROM user WHERE username = ?", (username,)).fetchone()[0]
+        card_no = cursor.execute("SELECT card_no FROM user WHERE username = ?", (username,)).fetchone()[0]
+
+        response = f'{{"fname":"{fname}","lname":"{lname}","address":"{address}","city":"{city}","state":"{state}","zipcode":"{zipcode}","card_no":"{card_no}"}}'
+
+        return make_response(response)
 
 @app.route("/proof_purchase", methods=["GET", "POST"])
 def proof_purchase():
