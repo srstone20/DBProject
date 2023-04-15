@@ -139,7 +139,6 @@
 
 		<script>loadPurchase();</script>
 		<script>loadUserInfo();</script>
-		<script>purchase();</script>
 		
 	</body>
 </HTML>

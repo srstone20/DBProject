@@ -131,7 +131,7 @@
 					</div>
 					<div class="col-md-3 text-end">
 						<!-- <a class="btn btn-md btn-primary" href="proof_purchase">Place Order</a> -->
-						<button class="btn btn-md btn-primary" onclick="purchase();moveCartToPurchase()">Place Order</button>
+						<button class="btn btn-md btn-primary" onclick="purchase();moveCartToPurchase();openProofPurchase();">Place Order</button>
 					</div>
 				</div>
 			</div>
