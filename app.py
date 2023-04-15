@@ -108,7 +108,7 @@ def reports():
 
     num_of_registered_users = cursor.execute("SELECT COUNT(username) FROM user").fetchall()
     num_of_books_per_genre = cursor.execute("SELECT genre, COUNT(genre) FROM book WHERE genre='Fantasy' OR genre='Horror' OR genre='Realistic Fiction' OR genre='Adventure' GROUP BY genre ORDER BY COUNT(genre) DESC").fetchall()
-    monthly_sales = cursor.execute("SELECT ").fetchall()
+    monthly_sales = cursor.execute("SELECT STRFTIME('%m-%Y', date_purchased) AS order_month, ROUND(SUM(total),2) AS total_revenue FROM purchase GROUP BY STRFTIME('%m-%Y', date_purchased)").fetchall()
     # Average monthly sales, in dollars, for the current year, ordered by month
     book_titles_and_num_of_reviews = cursor.execute("SELECT title, COUNT(review) FROM book AS B, review AS R WHERE B.ISBN = R.ISBN GROUP BY title").fetchall()
 
@@ -193,7 +193,7 @@ def proof_purchase():
 
         response = f'{{"userID":"{userID}","date":"{date}","time":"{time}"}}'
 
-        date_purchased = date
+        date_purchased = dt
         subtotal = login['subtotal']
         tax = 0.00
         shipping_cost = 4.99

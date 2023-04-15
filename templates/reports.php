@@ -24,7 +24,9 @@
 						<p>{{item}}</p>
 					{% endfor %}
 				<h3>Monthly Sales per Month:</h3>
-					<p></p>
+					{% for item in monthly_sales %}
+					<p>{{item}}</p>
+					{% endfor %}
 				<h3>Number of Reviews per Book</h3>
 					{% for item in book_titles_and_num_of_reviews %}
 						<p>{{item}}</p>
