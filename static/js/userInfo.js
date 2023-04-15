@@ -9,7 +9,3 @@ function getUserInfo() {
         tags[i].value = u;
     }
 }
-
-// function getUserInfo() {
-//     console.log("GETTING IT");
-// }
