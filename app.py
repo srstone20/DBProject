@@ -76,6 +76,8 @@ def customer_registration():
         ])
         con.commit()
 
+        return render_template("search.php")
+
     return render_template("customer_registration.php")
 
 
