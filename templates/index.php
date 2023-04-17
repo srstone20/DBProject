@@ -18,10 +18,21 @@
                 <h5>Main Menu</h5>
                 <br/>
                 <div>
-                    <a href="/search">Search Online</a>
-                    <a href="/customer_registration">Sign Up</a>
-                    <a href="/user_login">Login</a>
-                    <a href="/admin_login">Administrator</a>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a class="btn btn-md btn-primary" href="/search" style="background-color:green;border-color:green;">Search Online</a>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a class="btn btn-md btn-primary" href="/customer_registration">Sign Up</a>
+                    </div> 
+                    <br>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a class="btn btn-md btn-primary" href="/user_login">Login</a>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a class="btn btn-md btn-primary" href="/admin_login" style="background-color:grey;border-color:grey;">Administrator</a>
+                    </div>
                 </div>
             </div>
         </div>
