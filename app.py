@@ -55,6 +55,13 @@ def customer_registration():
 
     if request.method == "POST":
         form = request.form
+
+        # validate info is ok
+        dbusername = cursor.execute("SELECT username FROM user WHERE username = ?", [form['inputUsername'],])
+        if (dbusername is not None or
+            form['inputPIN'] != form['inputPIN2']):
+            return render_template("customer_registration.php")
+
         insertUser = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         cursor.execute(insertUser, [
             form['inputUsername'],
@@ -88,7 +95,7 @@ def user_login():
     if request.method == "POST":
         session['username'] = request.form.get('username')
         session['password'] = request.form.get('PIN')
-        return render_template("user_login.php")
+        return render_template("search.php")
 
 # Not sure if admin verification belongs here or under admin_tasks route
 @app.route("/admin_login", methods=["GET", "POST"])
