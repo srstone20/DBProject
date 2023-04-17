@@ -55,7 +55,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							<a class="btn btn-md btn-secondary" href="#">Recalculate Payment</a>
+							<button class="btn btn-md btn-secondary" onclick="loadCart()">Recalculate Payment</button>
 						</div>
 						<div class="col-md-6 text-end">
 							<b>Subtotal:</b> <span>$</span><span id="subtotal"></span>

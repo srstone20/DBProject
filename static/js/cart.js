@@ -99,6 +99,7 @@ function loadPurchase() {
 
 function loadCart() {
     var cartContainer = document.querySelector(".body");
+    cartContainer.innerHTML = "";
 
     var isbnsStr = localStorage.getItem("isbns");
     if (isbnsStr == null || isbnsStr == "[]") {
