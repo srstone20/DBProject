@@ -151,14 +151,30 @@ def results(keyword, methods=["POST"]):
     return render_template("results.php", books=books.fetchall())
 
 
-@app.route("/reviews/<string:ISBN>", methods=["GET"])
+@app.route("/reviews/<string:ISBN>", methods=["GET", "POST"])
 def reviews(ISBN):
     con = sql.connect("sql/bbb.db")
     cursor = con.cursor()
 
+    if request.method == "POST":
+        uname = request.form['username']
+        review = request.form['review']
+
+        print(uname)
+        print(review)
+
+        preReview = cursor.execute("SELECT * FROM review WHERE username = ? AND isbn = ?", [uname, ISBN,]).fetchone()
+        if preReview is None:
+            cursor.execute("INSERT INTO review VALUES (?, ?, ?)", [uname, ISBN, review])
+        else:
+            cursor.execute("UPDATE review SET review = ? WHERE username = ? AND isbn = ?", [review, uname, ISBN])
+        
+        con.commit()
+
+        print(cursor.execute("SELECT * FROM review WHERE username = ? AND ISBN = ?", [uname, ISBN]).fetchone())
+
     reviewList = cursor.execute("SELECT review FROM review WHERE ISBN = ?", (ISBN,)).fetchall()
     title = cursor.execute("SELECT title FROM book WHERE ISBN = ?", (ISBN,)).fetchone()[0]
-
     return render_template("reviews.php", title = title, reviewList = reviewList)
 
 @app.route("/shopping_cart")
